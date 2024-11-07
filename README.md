@@ -1,5 +1,5 @@
 ### Furnish-Corner webshop
-# Categories:
+### Categories:
 ## Living room and Bedroom
-# subcategories:
+### subcategories:
 ## Devices, Couches, Beds and Wardrobes
