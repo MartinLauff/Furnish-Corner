@@ -1,46 +1,99 @@
-body {
-    font-family: 'Judson', Arial, sans-serif;
+:root {
+  /* Main brand colors */
+  --heading-color: #333333; /* Heading color */
+  --background-color-btn: #d17a22;
+  --hover-color-btn: #c15818;
 }
-
+body {
+  font-family: 'Judson', Arial, sans-serif;
+}
+h1 {
+  color: var(--heading-color);
+  margin-left: 6rem;
+}
 p {
-    text-align: right;
+  text-align: right;
 }
 
 th {
-    background-color: lightgray;
+  background-color: #d3d3d3;
 }
-
-body {
-    display: grid;
-    place-items: center; /* Centers both horizontally and vertically */
-
-    margin: 0;
+tr {
+  height: 2rem;
 }
-
 hr {
-    width: 50vw;
+  width: 50vw;
+}
+a {
+  text-decoration: none;
+}
+a,
+button,
+input {
+  transition: all 0.25s ease;
+}
+a:hover,
+button:hover,
+input[type='submit']:hover {
+  cursor: pointer;
 }
 
 a {
-    cursor: pointer;
+  color: #1a5a7a;
+  border-bottom: 2px solid #1a5a7a;
+  background-color: #fff;
+  padding: 0.35rem 0.7rem;
 }
 a:hover {
-    cursor: pointer;
-    color: grey;
-    text-decoration: none;
+  background-color: #1a5a7a;
+  color: #fff;
 }
-
-a > button, input[type='submit']{
-    background-color: lightgreen;
-    border-width: 1px;
-    border-color: green;
-    border-radius: 5px;
-    cursor: pointer;
+input[type='submit'] {
+  background-color: var(--background-color-btn);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  display: block;
 }
-
-a > button:hover, input[type='submit']:hover {
-    background-color: lightblue;
-    border-color: blue;
-    
+input[type='submit']:hover {
+  background-color: var(--hover-color-btn);
+  color: #fff;
 }
-
+input[type='text'],
+input[type='password'] {
+  border-radius: 5px;
+  width: 8rem;
+  height: 2rem;
+  padding: 0 1rem;
+  filter: drop-shadow(0px 2px 4px #00000040);
+  margin-left: 1rem;
+  outline: none;
+  border: none;
+}
+input::placeholder {
+  color: #a2a5b5;
+}
+input[type='text']:focus,
+input[type='password']:focus {
+  outline: 2px solid #33a5e7;
+}
+.wrapper {
+  width: fit-content;
+  margin: 6rem auto;
+}
+.links {
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-between;
+}
+nav {
+  display: flex;
+  justify-content: center;
+}
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}

@@ -4,30 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Customer</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
     <h1>Profile information</h1>
-    <label for="name">Username</label>
-    <input
-      id="name"
-      type="text"
-      placeholder="username"
-      disabled
-      value="sample username"
-    />
-    <br />
-    <br />
-    <label for="pass">Password</label>
-    <input
-      type="password"
-      placeholder="password"
-      disabled
-      value="sample password"
-    />
-    <br />
-    <br />
-    <a href="logout.html">Log out</a>
-    <a href="index.html">Return home</a>
-    <a href="shoppingCart.html">Shopping cart</a>
+    <div class="wrapper">
+      <label for="name">Username</label>
+      <input
+        id="name"
+        type="text"
+        placeholder="username"
+        disabled
+        value="sample username"
+      />
+      <br />
+      <br />
+      <label for="pass">Password</label>
+      <input
+        type="password"
+        placeholder="password"
+        disabled
+        value="sample password"
+      />
+      <div class="links">
+        <a href="index.html">Return home</a>
+        <a href="logout.html">Log out</a>
+        <a href="shoppingCart.html">Shopping cart</a>
+      </div>
+    </div>
   </body>
 </html>

@@ -3,30 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Registration</title>
   </head>
   <body>
     <h1>Create New Account!</h1>
-    <form>
-      <label for="username">Username</label>
-      <input type="text" id="username" placeholder="username" required />
-      <br />
-      <br />
-      <label for="password">Enter password</label>
-      <input type="password" id="password" placeholder="password" required />
-      <br />
-      <br />
-      <label for="confirmpassword">Confirm password</label>
-      <input
-        type="password"
-        id="confirmpassword"
-        placeholder="confirm password"
-        required
-      />
-      <br />
-      <br />
-      <input type="submit" value="Submit" />
-      <button onclick="window.location.href='login.html'">Back to login</button>
-    </form>
+    <div class="wrapper">
+      <form>
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="username" required />
+        <br />
+        <br />
+        <label for="password">Enter password</label>
+        <input type="password" id="password" placeholder="password" required />
+        <br />
+        <br />
+        <label for="confirmpassword">Confirm password</label>
+        <input
+          type="password"
+          id="confirmpassword"
+          placeholder="confirm password"
+          required
+        />
+        <br />
+        <br />
+        <input type="submit" value="Submit" />
+      </form>
+      <div class="links">
+        <a href="login.html">Back to login</a>
+      </div>
+    </div>
   </body>
 </html>
