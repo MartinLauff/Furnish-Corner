@@ -1,0 +1,46 @@
+body {
+    font-family: 'Judson', Arial, sans-serif;
+}
+
+p {
+    text-align: right;
+}
+
+th {
+    background-color: lightgray;
+}
+
+body {
+    display: grid;
+    place-items: center; /* Centers both horizontally and vertically */
+
+    margin: 0;
+}
+
+hr {
+    width: 50vw;
+}
+
+a {
+    cursor: pointer;
+}
+a:hover {
+    cursor: pointer;
+    color: grey;
+    text-decoration: none;
+}
+
+a > button, input[type='submit']{
+    background-color: lightgreen;
+    border-width: 1px;
+    border-color: green;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+a > button:hover, input[type='submit']:hover {
+    background-color: lightblue;
+    border-color: blue;
+    
+}
+
