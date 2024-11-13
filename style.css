@@ -4,13 +4,13 @@
   --background-color-btn: #d17a22;
   --hover-color-btn: #c15818;
 }
+
+/*Task1*/ 
 body {
   font-family: 'Judson', Arial, sans-serif;
+  font-size: 12px;
 }
-h1 {
-  color: var(--heading-color);
-  margin-left: 6rem;
-}
+
 p {
   text-align: right;
 }
@@ -18,12 +18,28 @@ p {
 th {
   background-color: #d3d3d3;
 }
-tr {
-  height: 2rem;
+
+.wrapper {
+  width: fit-content;
+  margin: 6rem auto;
 }
-hr {
-  width: 50vw;
+
+.links {
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-between;
 }
+nav {
+  display: flex;
+  justify-content: center;
+}
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
 a {
   text-decoration: none;
 }
@@ -48,6 +64,16 @@ a:hover {
   background-color: #1a5a7a;
   color: #fff;
 }
+/*Task1 end*/
+
+/*Task2 */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr fit-content;
+  grid-row-gap: 1rem;
+}
+
 input[type='submit'] {
   background-color: var(--background-color-btn);
   color: #fff;
@@ -55,6 +81,7 @@ input[type='submit'] {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   display: block;
+  margin-top: 1rem;
 }
 input[type='submit']:hover {
   background-color: var(--hover-color-btn);
@@ -78,29 +105,5 @@ input[type='text']:focus,
 input[type='password']:focus {
   outline: 2px solid #33a5e7;
 }
-.wrapper {
-  width: fit-content;
-  margin: 6rem auto;
-}
-.links {
-  margin: 1rem auto;
-  display: flex;
-  justify-content: space-between;
-}
-nav {
-  display: flex;
-  justify-content: center;
-}
-.navbar ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
+/*Task2 end*/
 
-.formGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-row-gap: 1rem;
-}

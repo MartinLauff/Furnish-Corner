@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="mystyle.css" />
   </head>
   <body>
     <h1>Log in</h1>
     <div class="wrapper">
       <form>
-        <label for="name">Username</label>
-        <input id="name" type="text" placeholder="username" required />
-        <br />
-        <br />
-        <label for="pass">Password</label>
-        <input id="pass" type="password" placeholder="password" required />
-        <br />
-        <br />
-        <input type="submit" value="Submit" />
+        <div class="formGrid">
+          <label for="name">Username</label>
+          <input id="name" type="text" placeholder="username" required />
+          <label for="pass">Password</label>
+          <input id="pass" type="password" placeholder="password" required />
+        </div>
+          <input type="submit" value="Submit" />
       </form>
       <div class="links">
         <a href="index.html">Return home</a>
