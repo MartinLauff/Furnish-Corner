@@ -1,0 +1,10 @@
+h1 {
+    color: var(--heading-color);
+    margin-left: 6rem;
+  }
+  tr {
+    height: 2rem;
+  }
+  hr {
+    width: 100%;
+  }
