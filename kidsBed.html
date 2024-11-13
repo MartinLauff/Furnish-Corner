@@ -6,30 +6,34 @@
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
     <title>Beds Category</title>
   </head>
-  <body>
-    <h1>Kids' Bed</h1>
-    <div>
-      <span>
+  <body class="productBody">
+    <h1>Kids' Bed
+    </h1>
+    <div class="productPersentation">
+      <div class="productImg">
+        <img class="img" src="imgs/kbed.jpg" alt="wardrobe" />  
+        <span class="overlay-text">Wardrobe</span>
+      </div>
+      <span class="productDescription">
         This charming kids' bed, measuring 90 by 200 cm, is the perfect blend of
         comfort, durability, and playful design. Crafted with safety and style
         in mind, it features sturdy guardrails on both sides to keep your child
-        secure during sleep. The bed’s low-profile frame makes it easy for
+        secure during sleep. The bed's low-profile frame makes it easy for
         little ones to climb in and out independently, encouraging confidence
         and autonomy. Finished with non-toxic, child-safe materials, this bed
-        fits seamlessly into any decor, whether classic or modern. It’s designed
+        fits seamlessly into any decor, whether classic or modern. It's designed
         to support growing children, with robust construction that ensures years
-        of reliable use. Ideal for a cozy night’s sleep, this bed is a wonderful
-        addition to any child’s room.
+        of reliable use. Ideal for a cozy night's sleep, this bed is a wonderful
+        addition to any child's room.
+
       </span>
-      <h3>Prise: 219.99€</h3>
     </div>
-    <hr />
-    <div>
+    <div class="productActionBar">
+      <a href="bedsList.html">Go Back</a>
+      <h3>Prise: 219.99€</h3>
       <form action="addToCart.php" method="POST">
         <input type="submit" value="Add To Cart" />
       </form>
     </div>
-    <hr />
-    <a href="bedsList.html"><button>Go Back</button></a>
   </body>
 </html>
