@@ -7,33 +7,33 @@
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
     <title>Wardrobe Category</title>
   </head>
-  <body>
+  <body class="productBody">
     <h1>Classic Wardrobe</h1>
-    <div>
-      <span>
+    <div class="productPersentation">
+      <div class="productImg">
+        <img class="img" src="imgs/wardrobe.jpg" alt="wardrobe" />  
+        <span class="overlay-text">Wardrobe</span>
+      </div>
+      <span class="productDescription">
         This classic wardrobe, crafted from high-quality artisan oak, offers a
         timeless elegance that enhances any bedroom decor. It combines beauty
         and functionality with sturdy construction and a natural wood grain that
         adds warmth to your space.
-        <br />
         The wardrobe features ample hanging space, multiple adjustable shelves,
         and a full-length mirror on the inside of one door, making it easy to
         organize and access your clothing.
-        <br />
         Designed with soft-close hinges, it opens and closes smoothly, adding a
         touch of luxury to everyday use. The oak has been expertly finished to
         protect and preserve the wood, ensuring that it will stay beautiful for
         years to come.
       </span>
-      <h3>Prise: 249.99€</h3>
     </div>
-    <hr />
-    <div>
+    <div class="productActionBar">
+      <a href="wardrobesList.html">Go Back</a>
+      <h3>Prise: 249.99€</h3>
       <form action="addToCart.php" method="POST">
         <input type="submit" value="Add To Cart" />
       </form>
     </div>
-    <hr />
-    <a href="wardrobesList.html">Go Back</a>
   </body>
 </html>

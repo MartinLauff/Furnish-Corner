@@ -7,10 +7,14 @@
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
     <title>Wardrobe Category</title>
   </head>
-  <body>
+  <body class="productBody">
     <h1>Closet System</h1>
-    <div>
-      <span>
+    <div class="productPersentation">
+      <div class="productImg">
+        <img class="img" src="imgs/closetSystem.jpg" alt="wardrobe" />  
+        <span class="overlay-text">Wardrobe</span>
+      </div>
+      <span class="productDescription">
         This wall-to-wall closet system is a sleek, all-in-one storage solution
         designed to transform your space with style and functionality. Its
         versatile design spans the full width of your wall, maximizing storage
@@ -23,15 +27,13 @@
         closet is both a practical and sophisticated addition to any modern
         home.
       </span>
-      <h3>Prise: 599.99€</h3>
     </div>
-    <hr />
-    <div>
+    <div class="productActionBar">
+      <a href="wardrobesList.html">Go Back</a>
+      <h3>Prise: 599.99€</h3>
       <form action="addToCart.php" method="POST">
         <input type="submit" value="Add To Cart" />
       </form>
     </div>
-    <hr />
-    <a href="wardrobesList.html">Go Back</a>
   </body>
 </html>
