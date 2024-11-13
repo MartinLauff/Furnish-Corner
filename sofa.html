@@ -6,10 +6,14 @@
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
     <title>Couches Category</title>
   </head>
-  <body>
-    <h1>Sofa</h1>
-    <div>
-      <span>
+  <body class="productBody">
+    <h1>Sofa    </h1>
+    <div class="productPersentation">
+      <div class="productImg">
+        <img class="img" src="imgs/sofa.jpg" alt="wardrobe" />  
+        <span class="overlay-text">Wardrobe</span>
+      </div>
+      <span class="productDescription">
         This versatile sofa combines classic comfort with a modern design,
         making it a perfect addition to any living space. Its plush cushions
         provide exceptional support, ideal for relaxing after a long day or
@@ -21,15 +25,13 @@
         comfortable, this sofa enhances any room with its blend of elegance and
         functionality.
       </span>
-      <h3>Prise: 399.00€</h3>
     </div>
-    <hr />
-    <div>
+    <div class="productActionBar">
+      <a href="couchesList.html">Go Back</a>
+      <h3>Prise: 399.00€      </h3>
       <form action="addToCart.php" method="POST">
         <input type="submit" value="Add To Cart" />
       </form>
     </div>
-    <hr />
-    <a href="couchesList.html"><button>Go Back</button></a>
   </body>
 </html>

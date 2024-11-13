@@ -7,9 +7,14 @@
     <title>Devices Category</title>
   </head>
   <body>
-    <h1>Smart Curtains</h1>
-    <div>
-      <span>
+    <body class="productBody">
+      <h1>Smart Curtains      </h1>
+      <div class="productPersentation">
+        <div class="productImg">
+          <img class="img" src="imgs/curtains.jpg" alt="wardrobe" />  
+          <span class="overlay-text">Wardrobe</span>
+        </div>
+        <span class="productDescription">
         Transform your home's ambiance effortlessly with these smart curtains.
         Designed for modern convenience, these curtains can be controlled via a
         smartphone app or voice assistant, allowing you to open, close, or
@@ -21,16 +26,14 @@
         provide style but also improve energy efficiency by regulating sunlight
         and temperature. Perfect for any room, they bring a touch of
         sophistication and ease to your daily routine.
-      </span>
-      <h3>Prise: 149.00€</h3>
-    </div>
-    <hr />
-    <div>
-      <form action="addToCart.php" method="POST">
-        <input type="submit" value="Add To Cart" />
-      </form>
-    </div>
-    <hr />
-    <a href="devicesList.html"><button>Go Back</button></a>
-  </body>
+        </span>
+      </div>
+      <div class="productActionBar">
+        <a href="devicesList.html">Go Back</a>
+        <h3>Prise: 149.00€</h3>
+        <form action="addToCart.php" method="POST">
+          <input type="submit" value="Add To Cart" />
+        </form>
+      </div>
+    </body>
 </html>

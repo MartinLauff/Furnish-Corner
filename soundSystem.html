@@ -6,10 +6,14 @@
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
     <title>Devices Category</title>
   </head>
-  <body>
+  <body class="productBody">
     <h1>Sound System</h1>
-    <div>
-      <span>
+    <div class="productPersentation">
+      <div class="productImg">
+        <img class="img" src="imgs/sound.jpg" alt="wardrobe" />  
+        <span class="overlay-text">Wardrobe</span>
+      </div>
+      <span class="productDescription">
         This sophisticated living room sound system is designed to deliver
         immersive audio while seamlessly blending with your home decor. Crafted
         with sleek, minimalist aesthetics, its low-profile speakers can be
@@ -23,15 +27,13 @@
         adjustment. Perfect for movie nights or background music, this sound
         system combines style and quality to elevate your living space.
       </span>
-      <h3>Prise: 710.00€</h3>
     </div>
-    <hr />
-    <div>
+    <div class="productActionBar">
+      <a href="devicesList.html">Go Back</a>
+      <h3>Prise: 710.00€</h3>
       <form action="addToCart.php" method="POST">
         <input type="submit" value="Add To Cart" />
       </form>
     </div>
-    <hr />
-    <a href="devicesList.html"><button>Go Back</button></a>
   </body>
 </html>
