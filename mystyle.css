@@ -83,7 +83,6 @@ hr {
   transform: translate(-50%, -50%);
   color: #ffffff;
   font-size: 1.2em;
-  font-weight: bold;
   opacity: 0; /* Hidden by default */
   transition: opacity 0.3s ease; /* Smooth fade-in */
   pointer-events: none; /* Allows clicks to pass through */
