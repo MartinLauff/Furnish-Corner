@@ -1,9 +1,10 @@
 // Select the form and error message elements
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
-
-// Add event listener for form submission
-loginForm.addEventListener('submit', function (event) {
+const errorMessage = document.getElementById('error');
+if (loginForm) {
+  // Add event listener for form submission
+  loginForm.addEventListener('submit', function (event) {
     // Prevent the form from submitting
     event.preventDefault();
 
@@ -18,31 +19,35 @@ loginForm.addEventListener('submit', function (event) {
 
     // Check username
     if (username.length < minUsernameLength) {
-        errorMessage.textContent = 'Username must be at least 5 characters long.';
-        return;
+      errorMessage.textContent = 'Username must be at least 5 characters long.';
+      return;
     }
     const specialCharacters = /[!@#$%^&*()_+={}\[\]:;'"<>,.?]/;
 
     // Check if the password contains at least one of the characters
     if (!usernamePattern.test(username)) {
-        console.log("Username does not include any upper or lower case characters.");
+      console.log(
+        'Username does not include any upper or lower case characters.'
+      );
     }
 
     if (password.length < minPasswordLength) {
-        errorMessage.textContent = 'Password must be at least 10 characters long.';
-        return;
+      errorMessage.textContent =
+        'Password must be at least 10 characters long.';
+      return;
     }
 
     loginForm.submit();
-});
+  });
+}
 
-registerForm.addEventListener('submit', function (event) {
-    
+if (registerForm) {
+  registerForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
     // Get the username and password values
-    const username = document.getElementById('name').value.trim();
-    const password = document.getElementById('pass').value.trim();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
 
     // Define validation rules
     const minUsernameLength = 5;
@@ -51,22 +56,22 @@ registerForm.addEventListener('submit', function (event) {
 
     // Check username
     if (username.length < minUsernameLength) {
-        errorMessage.textContent = 'Username must be at least 5 characters long.';
-        return;
+      errorMessage.textContent = 'Username must be at least 5 characters long.';
+      return;
     }
     const specialCharacters = /[!@#$%^&*()_+={}\[\]:;'"<>,.?]/;
 
     // Check if the password contains at least one of the characters
     if (!usernamePattern.test(username)) {
-        console.log("Username does not include any upper or lower case characters.");
+      console.log(
+        'Username does not include any upper or lower case characters.'
+      );
     }
 
     if (password.length < minPasswordLength) {
-        errorMessage.textContent = 'Password must be at least 10 characters long.';
-        return;
+      errorMessage.textContent =
+        'Password must be at least 10 characters long.';
+      return;
     }
-});
-
-
-
-
+  });
+}
