@@ -3,9 +3,24 @@
   --heading-color: #333333; /* Heading color */
   --background-color-btn: #d17a22;
   --hover-color-btn: #c15818;
+  --dark-font: #e0e0e0;
+  --dark-background: #121212;
+  --light-font: #212121;
+  --light-background: #ffffff;
 }
 
-/*Task1*/ 
+.darkMode,
+.darkMode h1,
+.darkMode h2 {
+  color: var(--dark-font);
+  background-color: var(--dark-background);
+}
+.lightMode {
+  color: var(--light-font);
+  background-color: var(--light-background);
+}
+
+/*Task1*/
 body {
   font-family: 'Judson', Arial, sans-serif;
   font-size: 12px;
@@ -98,6 +113,7 @@ input[type='password'] {
   outline: none;
   border: none;
 }
+
 input::placeholder {
   color: #a2a5b5;
 }
@@ -107,3 +123,12 @@ input[type='password']:focus {
 }
 /*Task2 end*/
 
+/* Assignment 3 task1 */
+input[type='text'].valid,
+input[type='password'].valid {
+  border: 2px solid green;
+}
+input[type='text'].invalid,
+input[type='password'].invalid {
+  border: 2px solid red;
+}

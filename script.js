@@ -2,6 +2,11 @@
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 const errorMessage = document.getElementById('error');
+const body = document.body;
+
+// body.classList.add('lightMode');
+body.classList.add('darkMode');
+
 if (loginForm) {
   // Add event listener for form submission
   loginForm.addEventListener('submit', function (event) {
@@ -9,35 +14,46 @@ if (loginForm) {
     event.preventDefault();
 
     // Get the username and password values
-    const username = document.getElementById('name').value.trim();
-    const password = document.getElementById('pass').value.trim();
+    const username = document.getElementById('name');
+    const password = document.getElementById('pass');
+
+    const usernameValue = username.value.trim();
+    const passwordValue = password.value.trim();
 
     // Define validation rules
     const minUsernameLength = 5;
     const minPasswordLength = 10;
-    const usernamePattern = /[a-zA-Z]/;
+    const lowerCase = /[a-z]/;
+    const upperCase = /[A-Z]/;
 
     // Check username
-    if (username.length < minUsernameLength) {
+    if (usernameValue.length < minUsernameLength) {
+      username.classList.add('invalid');
       errorMessage.textContent = 'Username must be at least 5 characters long.';
       return;
     }
-    const specialCharacters = /[!@#$%^&*()_+={}\[\]:;'"<>,.?]/;
 
-    // Check if the password contains at least one of the characters
-    if (!usernamePattern.test(username)) {
-      console.log(
-        'Username does not include any upper or lower case characters.'
-      );
+    // Check if the username contains at least one uppercase and lowercase character
+    if (!(lowerCase.test(usernameValue) && upperCase.test(usernameValue))) {
+      username.classList.add('invalid');
+      errorMessage.textContent =
+        'Username does not include any upper or lower case characters.';
+      return;
     }
+    username.classList.remove('invalid');
+    username.classList.add('valid');
 
-    if (password.length < minPasswordLength) {
+    if (passwordValue.length < minPasswordLength) {
+      password.classList.add('invalid');
       errorMessage.textContent =
         'Password must be at least 10 characters long.';
       return;
     }
 
-    loginForm.submit();
+    errorMessage.textContent = '';
+    password.classList.remove('invalid');
+    password.classList.add('valid');
+    // loginForm.submit();
   });
 }
 
@@ -46,32 +62,55 @@ if (registerForm) {
     event.preventDefault();
 
     // Get the username and password values
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmpassword');
+
+    const usernameValue = username.value.trim();
+    const passwordValue = password.value.trim();
+    const confPasswordValue = confirmPassword.value.trim();
 
     // Define validation rules
     const minUsernameLength = 5;
     const minPasswordLength = 10;
-    const usernamePattern = /[a-zA-Z]/;
+    const lowerCase = /[a-z]/;
+    const upperCase = /[A-Z]/;
 
     // Check username
-    if (username.length < minUsernameLength) {
+    if (usernameValue.length < minUsernameLength) {
+      username.classList.add('invalid');
       errorMessage.textContent = 'Username must be at least 5 characters long.';
       return;
     }
-    const specialCharacters = /[!@#$%^&*()_+={}\[\]:;'"<>,.?]/;
 
     // Check if the password contains at least one of the characters
-    if (!usernamePattern.test(username)) {
-      console.log(
-        'Username does not include any upper or lower case characters.'
-      );
+    if (!(lowerCase.test(usernameValue) && upperCase.test(usernameValue))) {
+      username.classList.add('invalid');
+      errorMessage.textContent =
+        'Username does not include any upper or lower case characters.';
+      return;
     }
+    username.classList.remove('invalid');
+    username.classList.add('valid');
 
-    if (password.length < minPasswordLength) {
+    if (passwordValue.length < minPasswordLength) {
+      password.classList.add('invalid');
       errorMessage.textContent =
         'Password must be at least 10 characters long.';
       return;
     }
+
+    password.classList.remove('invalid');
+    password.classList.add('valid');
+
+    if (confPasswordValue !== passwordValue) {
+      confirmPassword.classList.add('invalid');
+      errorMessage.textContent = 'Passwords must match';
+      return;
+    }
+    confirmPassword.classList.remove('invalid');
+    confirmPassword.classList.add('valid');
+    errorMessage.textContent = '';
+    // registerForm.submit();
   });
 }
