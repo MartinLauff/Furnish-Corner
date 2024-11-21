@@ -7,7 +7,12 @@
     <title>About Furnish Corner</title>
   </head>
   <body>
-    <h1>About us</h1>
+    <div class="top-bar">
+      <h1>About us</h1>
+      <div class="theme-setting">
+        <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+      </div>
+    </div>
     <div class="wrapper">
       <strong>Welcome to our company</strong>
       <p>
@@ -20,5 +25,6 @@
       <span>Email: </span>
       <a href="mailto:samplemail@example.com">samplemail@example.com</a>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>

@@ -3,9 +3,35 @@ const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 const errorMessage = document.getElementById('error');
 const body = document.body;
+const theme = document.getElementById('theme-checkbox');
 
-// body.classList.add('lightMode');
-body.classList.add('darkMode');
+function applySavedTheme() {
+  const storedTheme = localStorage.getItem('theme');
+  if (storedTheme === 'dark') {
+    body.classList.add('darkMode');
+    body.classList.remove('lightMode');
+    if (theme) theme.checked = true; // synchronise checkbox
+  } else {
+    body.classList.add('lightMode');
+    body.classList.remove('darkMode');
+    if (theme) theme.checked = false; // synchronise checkbox
+  }
+}
+
+function setTheme(event) {
+  if (theme) {
+    if (event.target.checked) {
+      body.classList.remove('lightMode');
+      body.classList.add('darkMode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      body.classList.remove('darkMode');
+      body.classList.add('lightMode');
+      localStorage.setItem('theme', 'light');
+    }
+  }
+}
+applySavedTheme();
 
 if (loginForm) {
   // Add event listener for form submission

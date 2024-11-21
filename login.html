@@ -8,7 +8,12 @@
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
   </head>
   <body>
-    <h1>Log in</h1>
+    <div class="top-bar">
+      <h1>Log in</h1>
+      <div class="theme-setting">
+        <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+      </div>
+    </div>
     <div class="wrapper">
       <form id="loginForm">
         <div class="formGrid">

@@ -8,7 +8,12 @@
     <title>Furnish Corner</title>
   </head>
   <body>
-    <h1>Furnish Corner</h1>
+    <div class="top-bar">
+      <h1>Furnish Corner</h1>
+      <div class="theme-setting">
+        <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+      </div>
+    </div>
     <p style="width: 50%">
       Transform your home with stylish, high-quality furniture for living rooms
       and bedrooms. Our collection combines comfort, functionality, and modern
@@ -63,5 +68,6 @@
         </div>
       </a>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>

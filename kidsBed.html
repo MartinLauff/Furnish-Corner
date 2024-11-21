@@ -8,7 +8,12 @@
     <title>Beds Category</title>
   </head>
   <body class="productBody">
-    <h1>Kids' Bed</h1>
+    <div class="top-bar">
+      <h1>Kids' Bed</h1>
+      <div class="theme-setting">
+        <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+      </div>
+    </div>
     <div class="productPersentation">
       <div class="productImg">
         <img class="img" src="imgs/kbed.jpg" alt="wardrobe" />
@@ -34,5 +39,6 @@
         <input type="submit" value="Add To Cart" />
       </form>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
