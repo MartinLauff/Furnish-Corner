@@ -8,6 +8,7 @@ const couchesList = document.getElementById('couchesList');
 const wardrobeList = document.getElementById('wardrobeList');
 const bedsList = document.getElementById('bedsList');
 const devicesList = document.getElementById('devicesList');
+const collectionList = document.getElementById('collectionList');
 
 function applySavedTheme() {
   const storedTheme = localStorage.getItem('theme');
@@ -42,8 +43,13 @@ function setItemCount(action, itemId) {
   let itemCount = Number(element.innerText);
   if (action === 'add') {
     itemCount += 1;
+    collectionList.insertAdjacentHTML(
+      'afterbegin',
+      `<p id="${itemId}-${itemCount}">${itemId}</p>`
+    );
   }
   if (action === 'sub' && itemCount > 0) {
+    document.getElementById(`${itemId}-${itemCount}`).remove();
     itemCount -= 1;
   }
   element.innerText = itemCount;
