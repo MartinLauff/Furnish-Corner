@@ -149,6 +149,11 @@ body.darkMode input[type='password'] {
 body.darkMode .theme-setting {
   border: 2px solid var(--dark-font);
 }
+
+body.darkMode th {
+  color: var(--light-font);
+}
+
 .top-bar {
   position: relative;
 }
