@@ -45,7 +45,11 @@ function setItemCount(action, itemId) {
     itemCount += 1;
     collectionList.insertAdjacentHTML(
       'afterbegin',
-      `<p id="${itemId}-${itemCount}">${itemId}</p>`
+      `<div id="${itemId}-${itemCount}" class="collectionItem">
+        <h5>${itemId}</h5>
+        <span></span>
+        <span>${itemId}</span>
+      </div>`
     );
   }
   if (action === 'sub' && itemCount > 0) {
