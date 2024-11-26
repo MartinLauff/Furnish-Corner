@@ -11,6 +11,21 @@ const devicesList = document.getElementById('devicesList');
 const collectionList = document.getElementById('collectionList');
 const tax = 1.19;
 
+const user = document.getElementById('name');
+var edit = false;
+
+function editUsername() {
+  edit = !edit;
+  if (edit) {
+    user.disabled = false;
+  }
+  if (!edit) {
+    user.disabled = true;
+    const username = user.value.trim();
+    alert('Userneme has been changed to ' + username);
+  }
+}
+
 function applySavedTheme() {
   const storedTheme = localStorage.getItem('theme');
   if (storedTheme === 'dark') {
@@ -69,7 +84,7 @@ function setItemCount(action, itemId) {
     itemCount -= 1;
     sum -= price;
   }
-
+  sum = sum.toFixed(2);
   sumElement.innerText = sum;
   countElement.innerText = itemCount;
   getTotalPrice(sum);
