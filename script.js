@@ -57,8 +57,8 @@ function setItemCount(action, itemId) {
       'afterbegin',
       `<div id="${itemId}-${itemCount}" class="collectionItem" data-price="${price}">
         <h5>${name}</h5>
-        <span></span>
         <span>${description}</span>
+        <span>${price}.00€</span>
       </div>`
     );
     sum += price;
