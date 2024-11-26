@@ -9,6 +9,7 @@ const wardrobeList = document.getElementById('wardrobeList');
 const bedsList = document.getElementById('bedsList');
 const devicesList = document.getElementById('devicesList');
 const collectionList = document.getElementById('collectionList');
+const tax = 1.19
 
 function applySavedTheme() {
   const storedTheme = localStorage.getItem('theme');
@@ -71,6 +72,13 @@ function setItemCount(action, itemId) {
 
   sumElement.innerText = sum;
   countElement.innerText = itemCount;
+  getTotalPrice(sum);
+}
+
+function getTotalPrice(priceWOTax) {
+  const element = document.getElementById('priceWTaxes');
+  const priceWithTaxes = (tax * priceWOTax).toFixed(2);
+  element.innerText = priceWithTaxes;
 }
 
 if (loginForm) {
