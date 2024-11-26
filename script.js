@@ -9,7 +9,7 @@ const wardrobeList = document.getElementById('wardrobeList');
 const bedsList = document.getElementById('bedsList');
 const devicesList = document.getElementById('devicesList');
 const collectionList = document.getElementById('collectionList');
-const tax = 1.19
+const tax = 1.19;
 
 function applySavedTheme() {
   const storedTheme = localStorage.getItem('theme');
@@ -79,6 +79,28 @@ function getTotalPrice(priceWOTax) {
   const element = document.getElementById('priceWTaxes');
   const priceWithTaxes = (tax * priceWOTax).toFixed(2);
   element.innerText = priceWithTaxes;
+}
+
+function deleteItems() {
+  const rows = document.querySelectorAll('.collectionItem');
+  if (Object.keys(rows).length !== 0 && rows.constructor !== Object) {
+    if (
+      confirm('Are you sure you want to delete all the collected items?') ===
+      true
+    ) {
+      let itemIds = [];
+
+      for (const element of rows) {
+        const id = element.getAttribute('id').split('-')[0];
+        itemIds.push(id);
+        element.remove();
+      }
+      itemIds = new Set(itemIds);
+      itemIds.forEach((id) => (document.getElementById(id).innerText = 0));
+      document.getElementById('sum').innerText = '0.00';
+      document.getElementById('priceWTaxes').innerText = '0.00';
+    }
+  }
 }
 
 if (loginForm) {

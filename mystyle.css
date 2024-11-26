@@ -167,6 +167,15 @@ hr {
   display: inline;
   float: right;
 }
+.delete {
+  background-color: #e50000;
+  border: 2px solid #e50000;
+  border-radius: 4px;
+  color: #fff;
+}
+.delete:hover {
+  background-color: #d30505;
+}
 @media screen and (max-width: 45rem) {
   .index-grid {
     display: block;
