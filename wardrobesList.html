@@ -35,9 +35,13 @@
             <th>Add to collection list</th>
           </tr>
           <tr>
-            <td align="left"><b>Classic Wardrobe</b></td>
-            <td align="left">Based Wardrobe made from artisan oak</td>
-            <td>249.99€</td>
+            <td id="classicWardrobe-name" align="left">
+              <b>Classic Wardrobe</b>
+            </td>
+            <td id="classicWardrobe-description" align="left">
+              Based Wardrobe made from artisan oak
+            </td>
+            <td id="classicWardrobe-price">249.99€</td>
             <td>
               <a href="classicWardrobe.html">See more</a>
             </td>
@@ -52,11 +56,11 @@
             </td>
           </tr>
           <tr>
-            <td align="left"><b>Closet System</b></td>
-            <td align="left">
+            <td id="closetSystem-name" align="left"><b>Closet System</b></td>
+            <td id="closetSystem-description" align="left">
               A wall-to-wall wardrobe with extra containing space
             </td>
-            <td>599.99€</td>
+            <td id="closetSystem-price">599.99€</td>
             <td>
               <a href="closetSystem.html">See more</a>
             </td>
@@ -71,6 +75,11 @@
       <hr />
       <div class="links">
         <a href="bedroomList.html">Go Back</a>
+        <div class="sum">
+          <span>Sum: </span>
+          <span id="sum">0.00</span>
+          <span>€</span>
+        </div>
       </div>
     </div>
     <div id="collectionList" class="wrapper"></div>

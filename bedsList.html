@@ -34,10 +34,12 @@
             <th>Add to collection list</th>
           </tr>
           <tr>
-            <td align="left"><b>Kids Bed</b></td>
-            <td align="left">Bed frame with storage</td>
+            <td id="kidsBed-name" align="left"><b>Kids Bed</b></td>
+            <td id="kidsBed-description" align="left">
+              Bed frame with storage
+            </td>
             <td>90x200cm</td>
-            <td>219.99€</td>
+            <td id="kidsBed-price">219.99€</td>
             <td>
               <a href="kidsBed.html">See more</a>
             </td>
@@ -48,10 +50,12 @@
             </td>
           </tr>
           <tr>
-            <td align="left"><b>Double Bed</b></td>
-            <td align="left">Large bed frame with padded headbord</td>
+            <td id="doubleBed-name" align="left"><b>Double Bed</b></td>
+            <td id="doubleBed-description" align="left">
+              Large bed frame with padded headbord
+            </td>
             <td>160x200cm</td>
-            <td>549.99€</td>
+            <td id="doubleBed-price">549.99€</td>
             <td>
               <a href="doubleBed.html">See more</a>
             </td>
@@ -65,6 +69,11 @@
       </div>
       <hr />
       <a href="bedroomList.html">Go Back</a>
+      <div class="sum">
+        <span>Sum: </span>
+        <span id="sum">0.00</span>
+        <span>€</span>
+      </div>
     </div>
     <div id="collectionList" class="wrapper"></div>
     <script src="script.js"></script>

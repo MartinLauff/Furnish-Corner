@@ -157,6 +157,11 @@ hr {
 .collectionItem h5 {
   margin: 0 2rem 0 1rem;
 }
+.sum {
+  padding: 0.35rem 0.7rem;
+  display: inline;
+  float: right;
+}
 @media screen and (max-width: 45rem) {
   .index-grid {
     display: block;

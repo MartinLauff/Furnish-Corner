@@ -39,24 +39,38 @@ function setTheme(event) {
 applySavedTheme();
 
 function setItemCount(action, itemId) {
-  const element = document.getElementById(itemId);
-  let itemCount = Number(element.innerText);
+  const price = Number(
+    document.getElementById(itemId + '-price').innerText.split('€')[0]
+  );
+  const name = document.getElementById(itemId + '-name').innerText;
+  const description = document.getElementById(
+    itemId + '-description'
+  ).innerText;
+  const countElement = document.getElementById(itemId);
+  const sumElement = document.getElementById('sum');
+  let sum = Number(sumElement.innerText);
+  let itemCount = Number(countElement.innerText);
+
   if (action === 'add') {
     itemCount += 1;
     collectionList.insertAdjacentHTML(
       'afterbegin',
-      `<div id="${itemId}-${itemCount}" class="collectionItem">
-        <h5>${itemId}</h5>
+      `<div id="${itemId}-${itemCount}" class="collectionItem" data-price="${price}">
+        <h5>${name}</h5>
         <span></span>
-        <span>${itemId}</span>
+        <span>${description}</span>
       </div>`
     );
+    sum += price;
   }
   if (action === 'sub' && itemCount > 0) {
     document.getElementById(`${itemId}-${itemCount}`).remove();
     itemCount -= 1;
+    sum -= price;
   }
-  element.innerText = itemCount;
+
+  sumElement.innerText = sum;
+  countElement.innerText = itemCount;
 }
 
 if (loginForm) {
