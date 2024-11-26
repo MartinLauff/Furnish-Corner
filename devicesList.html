@@ -23,7 +23,7 @@
         </p>
       </div>
       <div>
-        <table>
+        <table id="devicesList">
           <tr>
             <th align="left">Product</th>
             <th align="left">Decription</th>
@@ -39,10 +39,10 @@
             <td>
               <a href="smartCurtains.html">See more</a>
             </td>
-            <td align="center">0</td>
+            <td id="smartCurtains" align="center">0</td>
             <td align="center">
-              <button>+</button>
-              <button>-</button>
+              <button onclick='setItemCount("add", "smartCurtains")'>+</button>
+              <button onclick='setItemCount("sub", "smartCurtains")'>-</button>
             </td>
           </tr>
           <tr>
@@ -52,10 +52,10 @@
             <td>
               <a href="soundSystem.html">See more</a>
             </td>
-            <td align="center">0</td>
+            <td id="soundSystem" align="center">0</td>
             <td align="center">
-              <button>+</button>
-              <button>-</button>
+              <button onclick='setItemCount("add", "soundSystem")'>+</button>
+              <button onclick='setItemCount("sub", "soundSystem")'>-</button>
             </td>
           </tr>
         </table>

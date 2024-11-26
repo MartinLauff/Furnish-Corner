@@ -4,6 +4,10 @@ const registerForm = document.getElementById('registerForm');
 const errorMessage = document.getElementById('error');
 const body = document.body;
 const theme = document.getElementById('theme-checkbox');
+const couchesList = document.getElementById('couchesList');
+const wardrobeList = document.getElementById('wardrobeList');
+const bedsList = document.getElementById('bedsList');
+const devicesList = document.getElementById('devicesList');
 
 function applySavedTheme() {
   const storedTheme = localStorage.getItem('theme');
@@ -32,6 +36,18 @@ function setTheme(event) {
   }
 }
 applySavedTheme();
+
+function setItemCount(action, itemId) {
+  const element = document.getElementById(itemId);
+  let itemCount = Number(element.innerText);
+  if (action === 'add') {
+    itemCount += 1;
+  }
+  if (action === 'sub' && itemCount > 0) {
+    itemCount -= 1;
+  }
+  element.innerText = itemCount;
+}
 
 if (loginForm) {
   // Add event listener for form submission

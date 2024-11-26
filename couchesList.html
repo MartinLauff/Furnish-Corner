@@ -23,7 +23,7 @@
         </p>
     </div>
     <div>
-        <table>
+        <table id="couchesList">
           <tr>
             <th align="left">Product</th>
             <th align="left">Decription</th>
@@ -41,10 +41,10 @@
             <td>
               <a href="sofa.html">See more</a>
             </td>
-            <td align="center">0</td>
+            <td id="sofa" align="center">0</td>
             <td align="center">
-              <button>+</button>
-              <button>-</button>
+              <button onclick='setItemCount("add", "sofa")'>+</button>
+              <button onclick='setItemCount("sub", "sofa")'>-</button>
             </td>
           </tr>
           <tr>
@@ -55,10 +55,10 @@
             <td>
               <a href="lSapedSectional.html">See more</a>
             </td>
-            <td align="center">0</td>
+            <td id="lSapedSectional" align="center">0</td>
             <td align="center">
-              <button>+</button>
-              <button>-</button>
+              <button onclick='setItemCount("add", "lSapedSectional")'>+</button>
+              <button onclick='setItemCount("sub", "lSapedSectional")'>-</button>
             </td>
           </tr>
         </table>

@@ -25,7 +25,7 @@
         </p>
       </div>
       <div>
-        <table>
+        <table id="wardrobeList">
           <tr>
             <th align="left">Product</th>
             <th align="left">Decription</th>
@@ -41,10 +41,14 @@
             <td>
               <a href="classicWardrobe.html">See more</a>
             </td>
-            <td align="center">0</td>
+            <td id="classicWardrobe" align="center">0</td>
             <td align="center">
-              <button>+</button>
-              <button>-</button>
+              <button onclick='setItemCount("add", "classicWardrobe")'>
+                +
+              </button>
+              <button onclick='setItemCount("sub", "classicWardrobe")'>
+                -
+              </button>
             </td>
           </tr>
           <tr>
@@ -56,10 +60,10 @@
             <td>
               <a href="closetSystem.html">See more</a>
             </td>
-            <td align="center">0</td>
+            <td id="closetSystem" align="center">0</td>
             <td align="center">
-              <button>+</button>
-              <button>-</button>
+              <button onclick='setItemCount("add", "closetSystem")'>+</button>
+              <button onclick='setItemCount("sub", "closetSystem")'>-</button>
             </td>
           </tr>
         </table>
