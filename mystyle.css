@@ -125,13 +125,16 @@ hr {
   display: flex;
   justify-content: space-evenly;
   padding-top: 1rem;
-  align-items: baseline;
+  align-items: center;
 }
 #error {
   margin: 1rem;
   font-size: medium;
   color: red;
   font-weight: bold;
+}
+.productActionBar input[type='submit'] {
+  margin: 0;
 }
 @media screen and (max-width: 45rem) {
   .index-grid {
