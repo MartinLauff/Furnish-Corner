@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="stylesheet" type="text/css" href="mystyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../style.css" />
+    <link rel="stylesheet" type="text/css" href="../../mystyle.css" />
     <title>Wardrobes Category</title>
   </head>
   <body>
@@ -43,7 +43,7 @@
             </td>
             <td id="classicWardrobe-price">249.99€</td>
             <td>
-              <a href="classicWardrobe.html">See more</a>
+              <a href="/myWebShop/product.php?pid=1">See more</a>
             </td>
             <td id="classicWardrobe" align="center">0</td>
             <td align="center">
@@ -62,7 +62,7 @@
             </td>
             <td id="closetSystem-price">599.99€</td>
             <td>
-              <a href="closetSystem.html">See more</a>
+              <a href="/myWebShop/product.php?pid=2">See more</a>
             </td>
             <td id="closetSystem" align="center">0</td>
             <td align="center">
@@ -74,7 +74,7 @@
       </div>
       <hr />
       <div class="links">
-        <a href="bedroomList.html">Go Back</a>
+        <a href="/myWebShop/bedroom/bedroomList.php">Go Back</a>
         <button onclick="deleteItems()" class="delete">Delete All Items</button>
         <div class="sum">
           <span>Sum: </span>
@@ -87,6 +87,6 @@
       </div>
     </div>
     <div id="collectionList" class="wrapper"></div>
-    <script src="script.js"></script>
+    <script src="../../script.js"></script>
   </body>
 </html>

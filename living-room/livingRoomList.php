@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="stylesheet" type="text/css" href="mystyle.css" />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="stylesheet" type="text/css" href="../mystyle.css" />
     <title>Living Room Category</title>
   </head>
   <body>
@@ -32,20 +32,20 @@
           <td align="left"><b>Devices</b></td>
           <td align="left">Devices for inproved life comfort</td>
           <td>
-            <a href="devicesList.html">See more</a>
+            <a href="devices/devicesList.php">See more</a>
           </td>
         </tr>
         <tr>
           <td align="left"><b>Couches</b></td>
           <td align="left">Couches for extra coziness</td>
           <td>
-            <a href="couchesList.html">See more</a>
+            <a href="couches/couchesList.php">See more</a>
           </td>
         </tr>
       </table>
       <hr />
-      <a href="index.html">Go Back</a>
+      <a href="/myWebShop">Go Back</a>
     </div>
-    <script src="script.js"></script>
+    <script src="../../script.js"></script>
   </body>
 </html>

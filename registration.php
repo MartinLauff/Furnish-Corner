@@ -32,7 +32,7 @@
         <input type="submit" value="Submit" />
       </form>
       <div class="links">
-        <a href="login.html">Back to login</a>
+        <a href="login.php">Back to login</a>
       </div>
     </div>
     <script src="script.js"></script>

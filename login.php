@@ -26,8 +26,8 @@
         <input type="submit" value="Submit" />
       </form>
       <div class="links">
-        <a href="index.html">Return home</a>
-        <a href="registration.html">Register</a>
+        <a href="index.php">Return home</a>
+        <a href="registration.php">Register</a>
       </div>
     </div>
     <script src="script.js"></script>

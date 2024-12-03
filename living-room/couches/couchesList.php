@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="stylesheet" type="text/css" href="mystyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../style.css" />
+    <link rel="stylesheet" type="text/css" href="../../mystyle.css" />
     <title>Couches Category</title>
   </head>
   <body>
@@ -39,7 +39,7 @@
             <td id="sofa-description" align="left">Small couch to place in front of a TV</td>
             <td id="sofa-price">399.00€</td>
             <td>
-              <a href="sofa.html">See more</a>
+              <a href="/myWebShop/product.php?pid=7">See more</a>
             </td>
             <td id="sofa" align="center">0</td>
             <td align="center">
@@ -52,7 +52,7 @@
             <td id="lSapedSectional-description" align="left">A comfy place for a quik nap</td>
             <td id="lSapedSectional-price">1525.00€</td>
             <td>
-              <a href="lSapedSectional.html">See more</a>
+              <a href="/myWebShop/product.php?pid=8">See more</a>
             </td>
             <td id="lSapedSectional" align="center">0</td>
             <td align="center">
@@ -64,7 +64,7 @@
       </div>
       <hr>
       <div class="links">
-        <a href="livingRoomList.html">Go Back</a>
+        <a href="/myWebShop/living-room/livingRoomList.php">Go Back</a>
         <button onclick="deleteItems()" class="delete">Delete All Items</button>
         <div class="sum">
           <span>Sum: </span>
@@ -77,6 +77,6 @@
       </div>
     </div>
     <div id="collectionList" class="wrapper"></div>
-    <script src="script.js"></script>
+    <script src="../../script.js"></script>
   </body>
 </html>
