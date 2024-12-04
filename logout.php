@@ -16,7 +16,7 @@
     </div>
     <p class="wrapper">
       You can <a href="login.php">log in</a> to an account or return to the
-      <a href="index.html">home page</a>
+      <a href="index.php">home page</a>
     </p>
     <script src="script.js"></script>
   </body>

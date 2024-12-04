@@ -36,9 +36,9 @@
         value="sample password"
       />
       <div class="links">
-        <a href="index.html">Return home</a>
-        <a href="logout.html">Log out</a>
-        <a href="shoppingCart.html">Shopping cart</a>
+        <a href="index.php">Return home</a>
+        <a href="logout.php">Log out</a>
+        <a href="shoppingCart.php">Shopping cart</a>
       </div>
     </div>
     <script src="script.js"></script>

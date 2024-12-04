@@ -17,7 +17,7 @@
     <div class="wrapper">
       <h3>Total price: 0.00€</h3>
       <span style="display: block; margin: 1rem 0">Products: 0</span>
-      <a href="customer.html">Back to profile</a>
+      <a href="customer.php">Back to profile</a>
     </div>
     <script src="script.js"></script>
   </body>

@@ -79,6 +79,6 @@
       </div>
     </div>
     <div id="collectionList" class="wrapper"></div>
-    <script src="script.js"></script>
+    <script src="../../script.js"></script>
   </body>
 </html>

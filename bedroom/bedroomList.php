@@ -48,6 +48,6 @@
       <hr />
       <a href="/myWebShop">Go Back</a>
     </div>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
   </body>
 </html>
