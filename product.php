@@ -33,7 +33,23 @@ if (isset($_GET['pid'])) {
             $errorMessage = "Product not found!";
         }
     }
-}  else {
+}  elseif (isset($_GET['pid1'])) {
+  $pid = $_GET['pid1'];
+  if (empty($pid)) {
+      echo $errorElement;
+  } else {
+      // Find the product with the given ID
+      foreach ($products as $item) {
+          if ($item['pid'] == $pid) {
+              $product = $item;
+              break;
+          }
+      }
+      if (!$product) {
+          $errorMessage = "Product not found!";
+      }
+  }
+} else {
     echo $errorElement;
 }
 ?>
@@ -87,7 +103,55 @@ if (isset($_GET['pid'])) {
           <input type="submit" value="Add To Cart" />
         </form>
       </div>
-    <?php endif; ?>
+      <?php
+
+if (!empty($_GET)) {
+  // Convert the values of $_GET into a numerically indexed array
+  $values = array_values($_GET);
+  
+  // Display parameters starting from the second one (index 1)
+  for ($i = 1; $i < count($values); $i++) {
+    foreach ($products as $item) {
+      if ($item['pid'] == $values[$i]) {
+        $product = $item;
+      }
+    }
+    if ($errorMessage) {
+      echo <<<HTML
+              <div class="error-message">
+                <h2>Error</h2>
+                <p>$errorMessage</p>
+              </div>
+              HTML;
+              continue; 
+            } elseif (isset($product)) {
+              echo <<<HTML
+              <div class="top-bar">
+                <h1>{$product['name']}</h1>
+              </div>
+              <div class="productPersentation">
+                <div class="productImg">
+                  <img class="img" src="{$product['imagepath']}" alt="{$product['name']}" />
+                  <span class="overlay-text">{$product['name']}</span>
+                </div>
+                <span class="productDescription">
+                  {$product['description']}
+                </span>
+              </div>
+              <div class="productActionBar">
+                <h3>Price: {$product['price']}€</h3>
+                <form action="addToCart.php" method="POST">
+                  <input type="submit" value="Add To Cart" />
+                </form>
+              </div>
+              HTML;
+            }
+          }
+        } else {
+          echo "No query parameters found!";
+        }
+        ?>
+        <?php endif; ?>
     <script src="script.js"></script>
   </body>
 </html>
