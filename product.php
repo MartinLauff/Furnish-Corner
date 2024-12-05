@@ -14,7 +14,7 @@ if ($products === null) {
 $product = null;
 $categoryProducts = [];
 $errorMessage = null;
-$errorElement = '<a style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" href=/myWebShop>Go Back</a>';
+$errorElement = '<div class="link-error" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);display: flex;align-items: center;flex-direction: column;"><h2 style="margin-left: 0">Invalid URL</h2><a href=/myWebShop>Go Back</a></div>';
 
 // Check URL parameters for 'pid' (product) or 'category'
 if (isset($_GET['pid'])) {
