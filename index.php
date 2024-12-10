@@ -1,3 +1,11 @@
+<?php
+// Include database connection
+include 'db.php';
+
+// Fetch all categories
+$sql = "SELECT * FROM Category";
+$result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,12 +29,15 @@
     </p>
     <nav class="navbar">
       <ul>
-        <li>
-          <a href="living-room/livingRoomList.php">Living Room</a>
-        </li>
-        <li>
-          <a href="bedroom/bedroomList.php">Bedroom</a>
-        </li>
+      <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<li><a href='category.php?catid=" . $row['catid'] . "'>" . htmlspecialchars($row['name']) . "</a></li>";
+            }
+        } else {
+            echo "<li>No categories found</li>";
+        }
+        ?>
         <li>
           <a href="login.php">Log in</a>
         </li>
@@ -71,3 +82,7 @@
     <script src="script.js"></script>
   </body>
 </html>
+<?php
+// Close the database connection
+$conn->close();
+?>
