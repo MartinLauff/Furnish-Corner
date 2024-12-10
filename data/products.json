@@ -2,6 +2,7 @@
   {
     "pid": 1,
     "name": "Classic Wardrobe",
+    "short_description": "Based Wardrobe made from artisan oak",
     "description": "This classic wardrobe, crafted from high-quality artisan oak, offers a timeless elegance that enhances any bedroom decor. It combines beauty and functionality with sturdy construction and a natural wood grain that adds warmth to your space. The wardrobe features ample hanging space, multiple adjustable shelves, and a full-length mirror on the inside of one door, making it easy to organize and access your clothing. Designed with soft-close hinges, it opens and closes smoothly, adding a touch of luxury to everyday use. The oak has been expertly finished to protect and preserve the wood, ensuring that it will stay beautiful for years to come.",
     "imagepath": "./imgs/wardrobe.jpg",
     "price": "249.99",
@@ -11,6 +12,7 @@
   {
     "pid": 2,
     "name": "Closet System",
+    "short_description": "A wall-to-wall wardrobe with extra containing space",
     "description": "This wall-to-wall closet system is a sleek, all-in-one storage solution designed to transform your space with style and functionality. Its versatile design spans the full width of your wall, maximizing storage capacity without sacrificing elegance. Crafted from premium materials with a minimalist aesthetic, this closet offers a range of customizable compartments, hanging rods, and spacious drawers to accommodate everything from clothing to accessories. Adjustable shelving lets you tailor the layout to fit your needs, while soft-close doors add a refined touch. With its durable finish and clean lines, this system closet is both a practical and sophisticated addition to any modern home.",
     "imagepath": "./imgs/closetSystem.jpg",
     "price": "599.99",
@@ -20,6 +22,7 @@
   {
     "pid": 3,
     "name": "Double Bed",
+    "short_description": "Large bed frame with padded headbord",
     "description": "This elegant king-size bed combines luxurious comfort with modern design, creating a stunning centerpiece for your bedroom. With generous dimensions, it offers ample space for restful, undisturbed sleep, perfect for couples or those who simply love extra room to stretch out. The bed frame is crafted from durable materials with a reinforced structure that ensures long-lasting stability and support. Upholstered in soft, high-quality fabric, or available in sleek wood finishes, this bed complements any decor style, from classic to contemporary. The headboard provides comfortable support for reading or relaxing, while the slatted base enhances breathability and mattress longevity. Designed to elevate your bedroom's style and comfort, this king-size bed is a must-have for a premium sleep experience.",
     "imagepath": "./imgs/bed.webp",
     "price": "549.99",
@@ -29,6 +32,7 @@
   {
     "pid": 4,
     "name": "Kids' Bed",
+    "short_description": "Bed frame with storage",
     "description": "This charming kids' bed, measuring 90 by 200 cm, is the perfect blend of comfort, durability, and playful design. Crafted with safety and style in mind, it features sturdy guardrails on both sides to keep your child secure during sleep. The bed's low-profile frame makes it easy for little ones to climb in and out independently, encouraging confidence and autonomy. Finished with non-toxic, child-safe materials, this bed fits seamlessly into any decor, whether classic or modern. It's designed to support growing children, with robust construction that ensures years of reliable use. Ideal for a cozy night's sleep, this bed is a wonderful addition to any child's room.",
     "imagepath": "./imgs/kbed.jpg",
     "price": "219.99",
@@ -38,6 +42,7 @@
   {
     "pid": 5,
     "name": "Smart Curtains",
+    "short_description": "Remote and time controled blinds",
     "description": "Transform your home's ambiance effortlessly with these smart curtains. Designed for modern convenience, these curtains can be controlled via a smartphone app or voice assistant, allowing you to open, close, or adjust them from anywhere. With programmable scheduling, you can wake up gently to natural sunlight or enhance privacy in the evening with automated closure. The sleek, motorized track is quiet and easy to install, blending seamlessly with various decor styles. Made from high-quality, light-blocking fabric, these smart curtains not only provide style but also improve energy efficiency by regulating sunlight and temperature. Perfect for any room, they bring a touch of sophistication and ease to your daily routine.",
     "imagepath": "./imgs/curtains.jpg",
     "price": "149.00",
@@ -47,6 +52,7 @@
   {
     "pid": 6,
     "name": "Sound System",
+    "short_description": "Sleek sound setup that blends with furnture",
     "description": " This sophisticated living room sound system is designed to deliver immersive audio while seamlessly blending with your home decor. Crafted with sleek, minimalist aesthetics, its low-profile speakers can be positioned discreetly around the room, enhancing your space without drawing attention. Finished in neutral tones and featuring textured fabric covers, the speakers harmonize with various furniture styles, from classic to contemporary. Despite their subtle appearance, they pack powerful, high-fidelity sound that fills the room with rich, balanced audio. The system supports wireless connectivity, allowing you to stream music from any device, and includes intuitive controls for easy adjustment. Perfect for movie nights or background music, this sound system combines style and quality to elevate your living space.",
     "imagepath": "./imgs/curtains.jpg",
     "price": "710.00",
@@ -56,6 +62,7 @@
   {
     "pid": 7,
     "name": "Sofa",
+    "short_description": "Small couch to place in front of a TV",
     "description": "This versatile sofa combines classic comfort with a modern design, making it a perfect addition to any living space. Its plush cushions provide exceptional support, ideal for relaxing after a long day or entertaining guests. Upholstered in high-quality fabric, it's available in a range of colors to match your decor. The sofa's sturdy frame ensures durability, while its sleek, streamlined shape gives it a contemporary appeal. With an optional pull-out sleeper feature or storage compartment, it offers both style and practicality. Compact yet comfortable, this sofa enhances any room with its blend of elegance and functionality.",
     "imagepath": "./imgs/sofa.jpg",
     "price": "399.00",
@@ -65,6 +72,7 @@
   {
     "pid": 8,
     "name": "L-Shaped Sectional Couch",
+    "short_description": "A comfy place for a quik nap",
     "description": "This stylish L-shaped sectional couch offers a perfect blend of comfort and functionality, ideal for any living space. Its spacious design provides ample seating, making it perfect for gatherings or cozy nights in. Upholstered in a soft, durable fabric, this sectional is available in various colors to suit any decor. The deep cushions and supportive backrests ensure maximum comfort, while the modular design allows flexibility in arranging the layout to fit your room's needs. Sturdy wooden or metal legs add a touch of elegance, and some models include a hidden storage compartment or a pull-out sleeper option for added convenience. This sectional is a versatile centerpiece that effortlessly elevates your living room's style and comfort.",
     "imagepath": "./imgs/couch.jpg",
     "price": "1525.00",

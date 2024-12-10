@@ -1,0 +1,26 @@
+[
+  {
+    "subid": 1,
+    "categoryid": 1,
+    "name": "Beds",
+    "description": "Beds that match everyones style"
+  },
+  {
+    "subid": 2,
+    "categoryid": 1,
+    "name": "Wardrobes",
+    "description": "Wardrobes in any sizes"
+  },
+  {
+    "subid": 3,
+    "categoryid": 2,
+    "name": "Devices",
+    "description": "Devices for improved life comfort"
+  },
+  {
+    "subid": 4,
+    "categoryid": 2,
+    "name": "Couches",
+    "description": "Couches for extra coziness"
+  }
+]
