@@ -49,14 +49,14 @@ if (isset($_GET['catid'])) {
     <?php 
       // Fetch the first row to display the category name in the title
       $firstRow = $categoryAndSubcategories->fetch_assoc();
-      echo htmlspecialchars($firstRow['category_name']) . " Category"; 
+      echo $firstRow['category_name'] . " Category"; 
       $categoryAndSubcategories->data_seek(0); // Reset result pointer for further use
       ?>
     </title>
   </head>
   <body>
     <div class="top-bar">
-      <h1>Define Your <?php echo htmlspecialchars($firstRow['category_name']); ?></h1>
+      <h1>Define Your <?php echo $firstRow['category_name']; ?></h1>
       <div class="theme-setting">
         <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
       </div>
@@ -64,7 +64,7 @@ if (isset($_GET['catid'])) {
     <div class="wrapper">
       <div>
         <p>
-          Here You can find all the things for Your <?php echo htmlspecialchars($firstRow['category_name']); ?><br />
+          Here You can find all the things for Your <?php echo $firstRow['category_name']; ?><br />
           <br />
           View our products: <br />
         </p>
@@ -79,8 +79,8 @@ if (isset($_GET['catid'])) {
         while ($row = $categoryAndSubcategories->fetch_assoc()) {
             if (!empty($row['subcategory_name'])) {
                 echo "<tr>";
-                echo "<td align='left'><b>" . htmlspecialchars($row['subcategory_name']) . "</b></td>";
-                echo "<td align='left'>" . htmlspecialchars($row['description']) . "</td>";
+                echo "<td align='left'><b>" . $row['subcategory_name'] . "</b></td>";
+                echo "<td align='left'>" . $row['description'] . "</td>";
                 echo "<td><a href='subcategory.php?subid=" . $row['subid'] . "'>See more</a></td>";
                 echo "</tr>";
             }

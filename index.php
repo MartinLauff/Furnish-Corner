@@ -32,7 +32,7 @@ $result = $conn->query($sql);
       <?php
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo "<li><a href='category.php?catid=" . $row['catid'] . "'>" . htmlspecialchars($row['name']) . "</a></li>";
+                echo "<li><a href='category.php?catid=" . $row['catid'] . "'>" . $row['name'] . "</a></li>";
             }
         } else {
             echo "<li>No categories found</li>";

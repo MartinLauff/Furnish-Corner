@@ -37,6 +37,9 @@ if (isset($_GET['subid'])) {
         echo $errorElement; // Show error if no category or products are found
         exit;
     }
+
+    // Fetch the first row to get category details
+    $firstRow = $products->fetch_assoc();
   }
 }
 
@@ -48,11 +51,11 @@ if (isset($_GET['subid'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
-    <title>Devices Category</title>
+    <title><?php echo $firstRow['category_name']; ?> Category</title>
   </head>
   <body>
     <div class="top-bar">
-      <h1>Wellcome to our <?php if (!empty($firstRow['category_name'])) {echo htmlspecialchars($firstRow['category_name']);} ?> assortmant</h1>
+      <h1>Wellcome to our <?php echo $firstRow['category_name']; ?> assortmant</h1>
       <div class="theme-setting">
         <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
       </div>
@@ -60,7 +63,7 @@ if (isset($_GET['subid'])) {
     <div class="wrapper">
       <div>
         <p>
-        <?php echo htmlspecialchars($firstRow['description']); ?><br />
+        <?php echo $firstRow['description']; ?><br />
           <br />
           View our products: <br />
         </p>
@@ -76,12 +79,13 @@ if (isset($_GET['subid'])) {
             <th>Add to collection list</th>
           </tr>
           <?php
+            $products->data_seek(0);
             while ($row = $products->fetch_assoc()) {
                 if (!empty($row['name'])) {
                     echo "<tr>";
-                    echo "<td id='smartCurtains-name' align='left'><b>". htmlspecialchars($row['name']) . "</b></td>";
-                    echo "<td id='smartCurtains-description' align='left'>" . htmlspecialchars($row['short_description']) . "</td>";
-                    echo "<td id='smartCurtains-price'>". htmlspecialchars($row['prive']) ."€</td>";
+                    echo "<td id='smartCurtains-name' align='left'><b>". $row['name'] . "</b></td>";
+                    echo "<td id='smartCurtains-description' align='left'>" . $row['short_description'] . "</td>";
+                    echo "<td id='smartCurtains-price'>". $row['price'] ."€</td>";
                     echo "<td><a href='/myWebShop/product.php?pid=". $row['pid'] ."'>See more</a></td>";
                     echo "<td id='smartCurtains' align='center'>0</td>";
                     echo "<td align='center'><button onclick='setItemCount('add', 'smartCurtains')'>+</button><button onclick='setItemCount('sub', 'smartCurtains')'>-</button></td>";
@@ -93,21 +97,16 @@ if (isset($_GET['subid'])) {
       </div>
       <hr />
       <div class="links">
-        <?php 
-        $firstRow = $products->fetch_assoc();
-        if (!empty($row['name'])) {
-            echo "<a href='/myWebShop/category.php?catid=". htmlspecialchars($row['categoryid']). ">Go Back</a>";
-        }
-        ?>
-        <button onclick="deleteItems()" class="delete">Delete All Items</button>
-        <div class="sum">
-          <span>Sum: </span>
-          <span id="sum">0.00</span>
-          <span>€</span>
-          <span> | Sum incl. VAT: </span>
-          <span id="priceWTaxes">0.00</span>
-          <span>€</span>
-        </div>
+      <a href="/myWebShop/category.php?catid=<?php echo $firstRow['categoryid']; ?>">Go Back</a>
+      <button onclick="deleteItems()" class="delete">Delete All Items</button>
+      <div class="sum">
+        <span>Sum: </span>
+        <span id="sum">0.00</span>
+        <span>€</span>
+        <span> | Sum incl. VAT: </span>
+        <span id="priceWTaxes">0.00</span>
+        <span>€</span>
+      </div>
       </div>
     </div>
     <div id="collectionList" class="wrapper"></div>

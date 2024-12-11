@@ -91,7 +91,7 @@ if (!empty($_GET['pid'])) {
         </span>
       </div>
       <div class="productActionBar">
-        <a href="/myWebShop/subcategory.php?subid=<?php $product['subid']?>">Go Back</a>
+        <a href="/myWebShop/subcategory.php?subid=<?php echo $product['subid']?>">Go Back</a>
         <h3>Price: <?php echo $product['price']; ?>€</h3>
         <form action="addToCart.php" method="POST">
           <input type="submit" value="Add To Cart" />
