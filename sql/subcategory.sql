@@ -11,3 +11,13 @@ VALUES
 (2, 1, 'Wardrobes', 'Wardrobes in any sizes'),
 (3, 2, 'Devices', 'Devices for improved life comfort'),
 (4, 2, 'Couches', 'Couches for extra coziness');
+SELECT 
+	s.name AS category_name,
+    pb.name,
+    pb.short_description,
+    pb.price,
+    pb.pid
+FROM subcategory s
+LEFT JOIN productbase pb
+ON s.subid = pb.subid
+WHERE s.subid = 1;

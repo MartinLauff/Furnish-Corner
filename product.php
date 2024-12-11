@@ -1,56 +1,50 @@
 <?php
-// Load and decode the JSON file
-$jsonData = file_get_contents('data/products.json');
-if ($jsonData === false) {
-    die("Error: Unable to load the JSON file!");
-}
-
-$products = json_decode($jsonData, true);
-if ($products === null) {
-    die("Error: Invalid JSON data!");
-}
+// Include database connection
+include 'db.php';
 
 // Initialize variables
 $product = null;
-$categoryProducts = [];
 $errorMessage = null;
 $errorElement = '<div class="link-error" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);display: flex;align-items: center;flex-direction: column;"><h2 style="margin-left: 0">Invalid URL</h2><a href=/myWebShop>Go Back</a></div>';
 
-// Check URL parameters for 'pid' (product) or 'category'
-if (isset($_GET['pid'])) {
-    $pid = $_GET['pid'];
-    if (empty($pid)) {
-        echo $errorElement;
-    } else {
-        // Find the product with the given ID
-        foreach ($products as $item) {
-            if ($item['pid'] == $pid) {
-                $product = $item;
-                break;
-            }
-        }
-        if (!$product) {
-            $errorMessage = "Product not found!";
-        }
-    }
-}  elseif (isset($_GET['pid1'])) {
-  $pid = $_GET['pid1'];
-  if (empty($pid)) {
-      echo $errorElement;
+// Check URL parameters for 'pid'
+if (!empty($_GET['pid'])) {
+  $pid = $_GET['pid'];
+  $sql = "SELECT pb.name, p.description, p.imagepath, pb.price, pb.subid
+          FROM productbase pb 
+          LEFT JOIN product p 
+          ON pb.pid = p.pid 
+          WHERE p.pid = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("i", $pid);
+  $stmt->execute();
+  $result = $stmt->get_result();
+
+  if ($result->num_rows > 0) {
+      $product = $result->fetch_assoc();
   } else {
-      // Find the product with the given ID
-      foreach ($products as $item) {
-          if ($item['pid'] == $pid) {
-              $product = $item;
-              break;
-          }
-      }
-      if (!$product) {
-          $errorMessage = "Product not found!";
-      }
+      $errorMessage = "Product not found!";
   }
+  } elseif (!empty($_GET['pid1'])) {
+    $pid1 = $_GET['pid1'];
+    $sql = "SELECT pb.name, p.description, p.imagepath, pb.price, pb.subid
+            FROM productbase pb 
+            LEFT JOIN product p 
+            ON pb.pid = p.pid 
+            WHERE p.pid = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $pid1);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $product = $result->fetch_assoc();
+    } else {
+        $errorMessage = "Product not found!";
+    }
 } else {
     echo $errorElement;
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -97,7 +91,7 @@ if (isset($_GET['pid'])) {
         </span>
       </div>
       <div class="productActionBar">
-        <a href="/myWebShop/<?php echo $item['category']; ?>/<?php echo $item['subcategory']; ?>/<?php echo $item['subcategory']; ?>List.php">Go Back</a>
+        <a href="/myWebShop/subcategory.php?subid=<?php $product['subid']?>">Go Back</a>
         <h3>Price: <?php echo $product['price']; ?>€</h3>
         <form action="addToCart.php" method="POST">
           <input type="submit" value="Add To Cart" />
