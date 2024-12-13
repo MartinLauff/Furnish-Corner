@@ -186,6 +186,14 @@ hr {
   align-items: center;
   flex-direction: column;
 }
+.navCorner {
+  position: absolute;
+  top: 50%;
+  left: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
 @media screen and (max-width: 45rem) {
   .index-grid {
     display: block;

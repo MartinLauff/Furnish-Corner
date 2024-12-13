@@ -57,8 +57,10 @@ if (isset($_GET['catid'])) {
   <body>
     <div class="top-bar">
       <h1>Define Your <?php echo $firstRow['category_name']; ?></h1>
-      <div class="theme-setting">
-        <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+      <div class="navCorner">
+        <div class="theme-setting">
+          <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+        </div>
       </div>
     </div>
     <div class="wrapper">

@@ -9,6 +9,7 @@ const wardrobeList = document.getElementById('wardrobeList');
 const bedsList = document.getElementById('bedsList');
 const devicesList = document.getElementById('devicesList');
 const collectionList = document.getElementById('collectionList');
+const navCorner = document.querySelector('.theme-setting');
 const tax = 1.19;
 const cart_light_full = '';
 const cart_light_empty = ``;
@@ -29,16 +30,32 @@ function editUsername() {
     alert('Userneme has been changed to ' + username);
   }
 }
+function loadCartSvg(path) {
+  fetch('icons/cart_' + path + '.svg')
+    .then((res) => res.text())
+    .then((svg) => {
+      let cartContainer = document.querySelector('.navCorner .cart-container');
+      if (!cartContainer) {
+        // Create the container if it doesn't exist
+        cartContainer = document.createElement('div');
+        cartContainer.classList.add('cart-container');
+        document.querySelector('.navCorner').prepend(cartContainer);
+      }
+      cartContainer.innerHTML = svg;
+    });
+}
 
 function applySavedTheme() {
   const storedTheme = localStorage.getItem('theme');
   if (storedTheme === 'dark') {
     body.classList.add('darkMode');
     body.classList.remove('lightMode');
+    loadCartSvg('light_empty');
     if (theme) theme.checked = true; // synchronise checkbox
   } else {
     body.classList.add('lightMode');
     body.classList.remove('darkMode');
+    loadCartSvg('dark_empty');
     if (theme) theme.checked = false; // synchronise checkbox
   }
 }
@@ -48,10 +65,12 @@ function setTheme(event) {
     if (event.target.checked) {
       body.classList.remove('lightMode');
       body.classList.add('darkMode');
+      loadCartSvg('light_empty');
       localStorage.setItem('theme', 'dark');
     } else {
       body.classList.remove('darkMode');
       body.classList.add('lightMode');
+      loadCartSvg('dark_empty');
       localStorage.setItem('theme', 'light');
     }
   }
@@ -168,7 +187,7 @@ if (loginForm) {
     errorMessage.textContent = '';
     password.classList.remove('invalid');
     password.classList.add('valid');
-    // loginForm.submit();
+    loginForm.submit();
   });
 }
 

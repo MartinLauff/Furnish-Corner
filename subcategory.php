@@ -56,8 +56,10 @@ if (isset($_GET['subid'])) {
   <body>
     <div class="top-bar">
       <h1>Wellcome to our <?php echo $firstRow['category_name']; ?> assortmant</h1>
-      <div class="theme-setting">
-        <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+      <div class="navCorner">
+        <div class="theme-setting">
+          <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+        </div>
       </div>
     </div>
     <div class="wrapper">

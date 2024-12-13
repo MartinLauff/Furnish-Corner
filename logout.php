@@ -10,8 +10,10 @@
   <body>
     <div class="top-bar">
       <h2>You are loged out of your account</h2>
-      <div class="theme-setting">
-        <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+      <div class="navCorner">
+        <div class="theme-setting">
+          <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+        </div>
       </div>
     </div>
     <p class="wrapper">

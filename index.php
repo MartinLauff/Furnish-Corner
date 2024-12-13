@@ -18,8 +18,10 @@ $result = $conn->query($sql);
   <body>
     <div class="top-bar">
       <h1>Furnish Corner</h1>
-      <div class="theme-setting">
-        <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+      <div class="navCorner">
+        <div class="theme-setting">
+          <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+        </div>
       </div>
     </div>
     <p style="width: 50%">

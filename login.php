@@ -2,10 +2,10 @@
 // Include database connection
 include 'db.php';
 
+$error = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-    $error = null;
 
     // Check if fields are empty
     if (empty($username) || empty($password)) {
@@ -54,8 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <body>
     <div class="top-bar">
       <h1>Log in</h1>
-      <div class="theme-setting">
-        <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+      <div class="navCorner">
+        <div class="theme-setting">
+          <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
+        </div>
       </div>
     </div>
     <div class="wrapper">
@@ -68,7 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <?php if ($error): ?>
           <p id="error" style="color: red;"><?php echo $error; ?></p>
-        <?php endif; ?>
+          <?php endif; ?>
+          <p id="error" style="color: red;"></p>
         <input type="submit" value="Submit" />
       </form>
       <div class="links">
