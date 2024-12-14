@@ -235,7 +235,7 @@ if (registerForm) {
     confirmPassword.classList.remove('invalid');
     confirmPassword.classList.add('valid');
     errorMessage.textContent = '';
-    // registerForm.submit();
+    registerForm.submit();
   });
 }
 if (editForm) {

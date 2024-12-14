@@ -7,5 +7,5 @@ CREATE TABLE User (
 );
 INSERT INTO User (name, password, role)
 VALUES 
-('John', 'testpass1', 'customer'),
-('Bob', 'testpass2', 'admin');
+('John123', 'testpass123', 'customer'),
+('Bob123', 'testpass123', 'admin');
