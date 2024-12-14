@@ -1,6 +1,7 @@
 // Select the form and error message elements
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
+const editForm = document.getElementById('editForm');
 const errorMessage = document.getElementById('error');
 const body = document.body;
 const theme = document.getElementById('theme-checkbox');
@@ -19,17 +20,6 @@ const cart_dark_empty = ``;
 const user = document.getElementById('name');
 var edit = false;
 
-function editUsername() {
-  edit = !edit;
-  if (edit) {
-    user.disabled = false;
-  }
-  if (!edit) {
-    user.disabled = true;
-    const username = user.value.trim();
-    alert('Userneme has been changed to ' + username);
-  }
-}
 function loadCartSvg(path) {
   fetch('icons/cart_' + path + '.svg')
     .then((res) => res.text())
@@ -247,4 +237,19 @@ if (registerForm) {
     errorMessage.textContent = '';
     // registerForm.submit();
   });
+}
+if (editForm) {
+  editForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    edit = !edit;
+    if (edit) {
+      user.disabled = false;
+    } else {
+      user.disabled = true;
+      const username = user.value.trim();
+      alert('Userneme has been changed to ' + username);
+    }
+  });
+  // editForm.submit();
 }

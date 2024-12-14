@@ -128,11 +128,17 @@ hr {
   padding-top: 1rem;
   align-items: center;
 }
-#error {
+#error,
+#success {
   margin: 1rem;
   font-size: medium;
-  color: red;
   font-weight: bold;
+}
+#error {
+  color: #ff0000;
+}
+#success {
+  color: #008000;
 }
 .productActionBar input[type='submit'] {
   margin: 0;

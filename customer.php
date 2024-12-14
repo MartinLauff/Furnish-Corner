@@ -17,26 +17,26 @@
       </div>
     </div>
     <div class="wrapper">
-      <div>
-        <label for="name">Username</label>
-        <input
-          id="name"
-          type="text"
-          placeholder="username"
-          disabled
-          value="sample username"
-        />
-        <button onclick="editUsername()">edit</button>
-      </div>
-      <br />
-      <br />
-      <label for="pass">Password</label>
-      <input
-        type="password"
-        placeholder="password"
-        disabled
-        value="sample password"
-      />
+      <form id="editForm" method="PUT" action="customer.php">
+        <div class="formGrid">
+          <label for="name">Username</label>
+          <input
+            id="name"
+            type="text"
+            placeholder="username"
+            disabled
+            value="sample username"
+            />
+            <label for="pass">Password</label>
+            <input
+            type="password"
+            placeholder="password"
+            disabled
+            value="sample password"
+            />
+          </div>
+          <input type="submit" value="Edit" />
+      </form>
       <div class="links">
         <a href="index.php">Return home</a>
         <a href="logout.php">Log out</a>

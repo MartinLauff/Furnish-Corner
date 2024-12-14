@@ -3,6 +3,7 @@
 include 'db.php';
 
 $error = null;
+$success = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
@@ -12,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Username and password are required.";
     } else {
         // Query to find user
-        $sql = "SELECT * FROM User WHERE username = ?";
+        $sql = "SELECT * FROM User WHERE name = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -21,13 +22,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
             // Verify password
-            if (password_verify($password, $user['password'])) {
+            if ($password === $user['password']) {
+                // Update `isLogged` to TRUE
+                $updateSql = "UPDATE User SET isLogged = TRUE WHERE userid = ?";
+                $updateStmt = $conn->prepare($updateSql);
+                $updateStmt->bind_param("i", $user['userid']);
+                $updateStmt->execute();
+
+                // Start session and store user info
                 session_start();
                 $_SESSION['userid'] = $user['userid'];
-                $_SESSION['username'] = $user['username'];
+                $_SESSION['username'] = $user['name'];
                 $_SESSION['role'] = $user['role'];
-                echo json_encode(['status' => 'success']);
-                exit;
+                $success = "You are logged in!";
             } else {
                 $error = "Invalid password.";
             }
@@ -35,10 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "User not found.";
         }
     }
-
-    // Return error as JSON
-    echo json_encode(['status' => 'error', 'message' => $error]);
-    exit;
 }
 ?>
 
@@ -63,15 +66,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="wrapper">
       <form id="loginForm" method="POST" action="login.php">
         <div class="formGrid">
-          <label for="name">Username</label>
-          <input id="name" type="text" placeholder="username" />
-          <label for="pass">Password</label>
-          <input id="pass" type="password" placeholder="password" />
+          <label for="username">Username</label>
+          <input id="name" name="username" type="text" placeholder="username" />
+          <label for="password">Password</label>
+          <input id="pass" name="password" type="password" placeholder="password" />
         </div>
         <?php if ($error): ?>
-          <p id="error" style="color: red;"><?php echo $error; ?></p>
-          <?php endif; ?>
-          <p id="error" style="color: red;"></p>
+          <p id="error"><?php echo $error; ?></p>
+        <?php endif; ?>
+          <p id="error"></p>
+        <?php if ($success): ?>
+          <p id="success"><?php echo $success; ?></p>
+        <?php endif; ?>
         <input type="submit" value="Submit" />
       </form>
       <div class="links">

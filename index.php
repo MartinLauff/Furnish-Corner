@@ -2,6 +2,9 @@
 // Include database connection
 include 'db.php';
 
+// Start the session
+session_start();
+
 // Fetch all categories
 $sql = "SELECT * FROM Category";
 $result = $conn->query($sql);
@@ -43,9 +46,11 @@ $result = $conn->query($sql);
         <li>
           <a href="login.php">Log in</a>
         </li>
-        <li>
-          <a href="customer.php">Profile</a>
-        </li>
+        <?php if (isset($_SESSION['userid'])): ?>
+          <li>
+            <a href="customer.php">Profile</a>
+          </li>
+        <?php endif; ?>
         <li>
           <a href="about.php">About</a>
         </li>

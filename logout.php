@@ -1,3 +1,23 @@
+<?php
+// Include database connection
+include 'db.php';
+session_start();
+
+if (isset($_SESSION['userid'])) {
+    $userid = $_SESSION['userid'];
+
+    // Update `isLogged` to FALSE
+    $sql = "UPDATE User SET isLogged = FALSE WHERE userid = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $userid);
+    $stmt->execute();
+}
+
+// Destroy session and redirect to login
+session_destroy();
+header("Location: login.php");
+exit;
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
