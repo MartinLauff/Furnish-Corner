@@ -84,14 +84,17 @@ if (isset($_GET['subid'])) {
             $products->data_seek(0);
             while ($row = $products->fetch_assoc()) {
                 if (!empty($row['name'])) {
-                    echo "<tr>";
-                    echo "<td id='smartCurtains-name' align='left'><b>". $row['name'] . "</b></td>";
-                    echo "<td id='smartCurtains-description' align='left'>" . $row['short_description'] . "</td>";
-                    echo "<td id='smartCurtains-price'>". $row['price'] ."€</td>";
-                    echo "<td><a href='/myWebShop/product.php?pid=". $row['pid'] ."'>See more</a></td>";
-                    echo "<td id='smartCurtains' align='center'>0</td>";
-                    echo "<td align='center'><button onclick='setItemCount('add', 'smartCurtains')'>+</button><button onclick='setItemCount('sub', 'smartCurtains')'>-</button></td>";
-                    echo "</tr>";
+                  echo "<tr>";
+                  echo "<td id='" . $row['pid'] . "-name' align='left'><b>" . $row['name'] . "</b></td>";
+                  echo "<td id='" . $row['pid'] . "-description' align='left'>" . $row['short_description'] . "</td>";
+                  echo "<td id='" . $row['pid'] . "-price'>" . $row['price'] . "€</td>";
+                  echo "<td><a href='/myWebShop/product.php?pid=" . $row['pid'] . "'>See more</a></td>";
+                  echo "<td id='" . $row['pid'] . "' align='center'>0</td>";
+                  echo "<td align='center'>";
+                  echo "<button onclick=\"setItemCount('add', " . $row['pid'] . ")\">+</button>";
+                  echo "<button onclick=\"setItemCount('sub', " . $row['pid'] . ")\">-</button>";
+                  echo "</td>";
+                  echo "</tr>";                  
                 }
             }
           ?>

@@ -11,11 +11,7 @@ const bedsList = document.getElementById('bedsList');
 const devicesList = document.getElementById('devicesList');
 const collectionList = document.getElementById('collectionList');
 const navCorner = document.querySelector('.theme-setting');
-const tax = 1.19;
-const cart_light_full = '';
-const cart_light_empty = ``;
-const cart_dark_full = ``;
-const cart_dark_empty = ``;
+const tax = 1.19; // tax 19%
 
 const user = document.getElementById('name');
 var edit = false;
