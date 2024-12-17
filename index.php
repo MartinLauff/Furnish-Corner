@@ -2,9 +2,6 @@
 // Include database connection
 include 'db.php';
 
-// Start the session
-session_start();
-
 // Fetch all categories
 $sql = "SELECT * FROM Category";
 $result = $conn->query($sql);
@@ -17,6 +14,10 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
     <title>Furnish Corner</title>
+    <script>
+      const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+      const isCartFull = <?php echo json_encode($isCartFull); ?>;
+    </script>
   </head>
   <body>
     <div class="top-bar">
@@ -86,7 +87,8 @@ $result = $conn->query($sql);
         </div>
       </a>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js">
+    </script>
   </body>
 </html>
 <?php

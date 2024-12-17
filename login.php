@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $updateStmt->execute();
 
                 // Start session and store user info
-                session_start();
+                // session_start();
                 $_SESSION['userid'] = $user['userid'];
                 $_SESSION['username'] = $user['name'];
                 $_SESSION['role'] = $user['role'];
@@ -53,6 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
+    <script>
+      const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+      const isCartFull = <?php echo json_encode($isCartFull); ?>;
+    </script>
   </head>
   <body>
     <div class="top-bar">

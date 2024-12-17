@@ -1,3 +1,10 @@
+<?php
+// Include database connection
+include 'db.php';
+
+// Check if the cart is empty
+$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,21 +13,61 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
     <title>Shopping cart</title>
+    <script>
+      const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+      let isCartFull = <?php echo json_encode($isCartFull); ?>;
+    </script>
   </head>
   <body>
     <div class="top-bar">
-      <h1>Your shopping cart is empty!</h1>
+      <h1>Your shopping cart</h1>
       <div class="navCorner">
         <div class="theme-setting">
           <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
         </div>
       </div>
     </div>
-    <div class="wrapper">
-      <h3>Total price: 0.00€</h3>
-      <span style="display: block; margin: 1rem 0">Products: 0</span>
-      <a href="customer.php">Back to profile</a>
-    </div>
-    <script src="script.js"></script>
+    <div class="wrapper" style="text-align: center;">
+    <h2 style="margin: 0;" id="empty_cart"></h2>
+    <?php if (empty($cart)): ?>
+        <h2 style="margin: 0;">Your cart is empty.</h2>
+    <?php else: ?>
+        <table border="1">
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+                <th>Remove</th>
+            </tr>
+            <?php 
+            $grandTotal = 0;
+            foreach ($cart as $pid => $item):
+                $total = $item['price'] * $item['quantity'];
+                $grandTotal += $total;
+            ?>
+                <tr data-pid="<?php echo $pid; ?>">
+                    <td id="<?php echo $item['pid']; ?>-name"><?php echo $item['name']; ?></td>
+                    <td id="<?php echo $item['pid']; ?>-price" align="center"><?php echo $item['price']; ?>€</td>
+                    <td id="<?php echo $item['pid']; ?>-quantity" align="center"><?php echo $item['quantity']; ?></td>
+                    <td align="center">
+                      <button onclick="updateQuantity('add', <?php echo $item['pid']; ?>)">+</button>
+                      <button onclick="updateQuantity('sub', <?php echo $item['pid']; ?>)">-</button>
+                    </td>
+                    <td align="center">
+                        <button onclick="removeItem(<?php echo $pid; ?>)">Delete</button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            <tr>
+                <th colspan="4">Total</th>
+                <th id="grandTotal"><?php echo $grandTotal; ?>€</th>
+            </tr>
+        </table>
+    <?php endif; ?>
+    <a style="margin-top: 2rem;display: inline-block;" href="customer.php">Back to profile</a>
+  </div>
+    <script src="script.js">
+    </script>
   </body>
 </html>

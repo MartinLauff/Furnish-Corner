@@ -1,10 +1,19 @@
+<?php
+// Include database connection
+include 'db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="mystyle.css" />
     <title>About Furnish Corner</title>
+    <script>
+      const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+      const isCartFull = <?php echo json_encode($isCartFull); ?>;
+    </script>
   </head>
   <body>
     <div class="top-bar">
@@ -27,6 +36,7 @@
       <span>Email: </span>
       <a href="mailto:samplemail@example.com">samplemail@example.com</a>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js">
+    </script>
   </body>
 </html>

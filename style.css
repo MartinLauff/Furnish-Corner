@@ -68,6 +68,12 @@ a:hover {
   background-color: #1a5a7a;
   color: #fff;
 }
+.cart-container a {
+  border-bottom: unset;
+}
+.cart-container a:hover {
+  background-color: unset;
+}
 /*Task1 end*/
 
 /*Task2 */
@@ -141,6 +147,13 @@ body.darkMode a:hover {
   color: var(--light-font);
   border-bottom: 2px solid var(--light-font);
   background-color: var(--light-background);
+}
+body.darkMode .navCorner a {
+  border-bottom: unset;
+}
+body.darkMode .navCorner a:hover {
+  border-bottom: 1px solid var(--dark-font);
+  background-color: unset;
 }
 body.darkMode input[type='text'],
 body.darkMode input[type='password'] {

@@ -17,7 +17,12 @@ const user = document.getElementById('name');
 var edit = false;
 
 function loadCartSvg(path) {
-  fetch('icons/cart_' + path + '.svg')
+  if (!isLoggedIn) return;
+
+  const cartState = isCartFull ? 'full' : 'empty';
+  const cartIconPath = `icons/cart_${path}_${cartState}.svg`;
+
+  fetch(cartIconPath)
     .then((res) => res.text())
     .then((svg) => {
       let cartContainer = document.querySelector('.navCorner .cart-container');
@@ -27,7 +32,7 @@ function loadCartSvg(path) {
         cartContainer.classList.add('cart-container');
         document.querySelector('.navCorner').prepend(cartContainer);
       }
-      cartContainer.innerHTML = svg;
+      cartContainer.innerHTML = `<a href="shoppingCart.php" style="display: inline-block;">${svg}</a>`;
     });
 }
 
@@ -36,12 +41,12 @@ function applySavedTheme() {
   if (storedTheme === 'dark') {
     body.classList.add('darkMode');
     body.classList.remove('lightMode');
-    loadCartSvg('light_empty');
+    loadCartSvg('light');
     if (theme) theme.checked = true; // synchronise checkbox
   } else {
     body.classList.add('lightMode');
     body.classList.remove('darkMode');
-    loadCartSvg('dark_empty');
+    loadCartSvg('dark');
     if (theme) theme.checked = false; // synchronise checkbox
   }
 }
@@ -51,12 +56,12 @@ function setTheme(event) {
     if (event.target.checked) {
       body.classList.remove('lightMode');
       body.classList.add('darkMode');
-      loadCartSvg('light_empty');
+      loadCartSvg('light');
       localStorage.setItem('theme', 'dark');
     } else {
       body.classList.remove('darkMode');
       body.classList.add('lightMode');
-      loadCartSvg('dark_empty');
+      loadCartSvg('dark');
       localStorage.setItem('theme', 'light');
     }
   }
@@ -248,4 +253,53 @@ if (editForm) {
     }
   });
   // editForm.submit();
+}
+function updateQuantity(action, pid) {
+  fetch('updateCart.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `action=${action}&pid=${pid}`,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        // Update the DOM with new values
+        document.getElementById(`${pid}-quantity`).innerText = data.quantity;
+        document.getElementById('grandTotal').innerText =
+          data.grandTotal.toFixed(2);
+        +'€';
+      } else {
+        alert('Failed to update cart.');
+      }
+    });
+}
+function removeItem(pid) {
+  fetch('removeCart.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `pid=${pid}`,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        // Remove the item's row from the table
+        document.querySelector(`tr[data-pid="${pid}"]`).remove();
+
+        // Update the grand total
+        document.getElementById('grandTotal').innerText = data.grandTotal + '€';
+
+        // Check if the cart is empty
+        if (data.isCartEmpty) {
+          document.getElementById('empty_cart').innerText = `
+                Your cart is empty.
+            `;
+
+          // Change the cart icon to empty
+          isCartFull = false;
+          applySavedTheme(); // Call your existing function to load the empty cart icon
+        }
+      } else {
+        alert('Failed to remove item.');
+      }
+    });
 }

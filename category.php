@@ -53,6 +53,10 @@ if (isset($_GET['catid'])) {
       $categoryAndSubcategories->data_seek(0); // Reset result pointer for further use
       ?>
     </title>
+    <script>
+      const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+      const isCartFull = <?php echo json_encode($isCartFull); ?>;
+    </script>
   </head>
   <body>
     <div class="top-bar">
@@ -92,7 +96,8 @@ if (isset($_GET['catid'])) {
       <hr />
       <a href="/myWebShop">Go Back</a>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js">
+    </script>
   </body>
 </html>
 <?php

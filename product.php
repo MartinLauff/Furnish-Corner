@@ -65,6 +65,10 @@ if (!empty($_GET['pid'])) {
       }
       ?>
     </title>
+    <script>
+      const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+      const isCartFull = <?php echo json_encode($isCartFull); ?>;
+    </script>
   </head>
   <body class="productBody">
     <div class="top-bar">
@@ -95,9 +99,14 @@ if (!empty($_GET['pid'])) {
       <div class="productActionBar">
         <a href="/myWebShop/subcategory.php?subid=<?php echo $product['subid']?>">Go Back</a>
         <h3>Price: <?php echo $product['price']; ?>€</h3>
-        <form action="addToCart.php" method="POST">
-          <input type="submit" value="Add To Cart" />
-        </form>
+        <?php if (isset($_SESSION['userid'])): ?>
+            <form action="addToCart.php" method="POST">
+                <input type="hidden" name="pid" value="<?php echo $pid; ?>">
+                <input type="hidden" name="name" value="<?php echo $product['name']; ?>">
+                <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
+                <input type="submit" value="Add To Cart">
+            </form>
+        <?php endif; ?>
       </div>
       <?php
 
@@ -148,6 +157,7 @@ if (!empty($_GET)) {
         }
         ?>
         <?php endif; ?>
-    <script src="script.js"></script>
+    <script src="script.js">
+    </script>
   </body>
 </html>

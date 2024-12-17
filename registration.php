@@ -74,6 +74,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
     <title>Registration</title>
+    <script>
+      const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+      const isCartFull = <?php echo json_encode($isCartFull); ?>;
+    </script>
   </head>
   <body>
     <div class="top-bar">
@@ -111,6 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="login.php">Back to login</a>
       </div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js">
+    </script>
   </body>
 </html>

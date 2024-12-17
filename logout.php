@@ -1,7 +1,6 @@
 <?php
 // Include database connection
 include 'db.php';
-session_start();
 
 if (isset($_SESSION['userid'])) {
     $userid = $_SESSION['userid'];
@@ -26,6 +25,10 @@ exit;
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Logout</title>
+    <script>
+      const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+      const isCartFull = <?php echo json_encode($isCartFull); ?>;
+    </script>
   </head>
   <body>
     <div class="top-bar">
@@ -40,6 +43,7 @@ exit;
       You can <a href="login.php">log in</a> to an account or return to the
       <a href="index.php">home page</a>
     </p>
-    <script src="script.js"></script>
+    <script src="script.js">
+    </script>
   </body>
 </html>
