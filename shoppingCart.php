@@ -60,12 +60,27 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
                 </tr>
             <?php endforeach; ?>
             <tr>
-                <th colspan="4">Total</th>
-                <th id="grandTotal"><?php echo $grandTotal; ?>€</th>
+                <th colspan="3">Total</th>
+                <th>
+                    <span id="grandTotal">
+                      <?php echo number_format($grandTotal * 1.19, 2); ?>
+                    </span>
+                  <span>€</span>
+                </th>
+                <th>
+                  <span>Tax: </span>
+                    <span id="taxAmount">
+                      <?php echo number_format($grandTotal * 0.19, 2); ?>
+                    </span>
+                  <span>€</span>
+                </th>
             </tr>
         </table>
     <?php endif; ?>
     <a style="margin-top: 2rem;display: inline-block;" href="customer.php">Back to profile</a>
+    <form id="orderForm" method="POST" action="placeOrder.php">
+      <input type="submit" value="Order" />
+    </form>
   </div>
     <script src="script.js">
     </script>

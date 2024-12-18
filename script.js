@@ -265,9 +265,14 @@ function updateQuantity(action, pid) {
       if (data.success) {
         // Update the DOM with new values
         document.getElementById(`${pid}-quantity`).innerText = data.quantity;
-        document.getElementById('grandTotal').innerText =
-          data.grandTotal.toFixed(2);
+        document.getElementById('grandTotal').innerText = (
+          data.grandTotal * tax
+        ).toFixed(2);
         +'€';
+        document.getElementById('taxAmount').innerText = (
+          data.grandTotal *
+          (tax - 1)
+        ).toFixed(2);
       } else {
         alert('Failed to update cart.');
       }
@@ -286,7 +291,14 @@ function removeItem(pid) {
         document.querySelector(`tr[data-pid="${pid}"]`).remove();
 
         // Update the grand total
-        document.getElementById('grandTotal').innerText = data.grandTotal + '€';
+        document.getElementById('grandTotal').innerText = (
+          data.grandTotal * tax
+        ).toFixed(2);
+        +'€';
+        document.getElementById('taxAmount').innerText = (
+          data.grandTotal *
+          (tax - 1)
+        ).toFixed(2);
 
         // Check if the cart is empty
         if (data.isCartEmpty) {
