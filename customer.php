@@ -7,6 +7,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 $username = $_SESSION['username'];
+$userid = $_SESSION['userid'];
 
 
 if (!empty($_POST['user_id'])) {
@@ -29,7 +30,7 @@ $sql = "
           LEFT JOIN User u
               ON o.userid = u.userid
           WHERE 
-              o.userid = ? AND o.productid = ?
+              o.userid = ?
       ";
 
 // Prepare the statement
@@ -38,7 +39,7 @@ $stmt = $conn->prepare($sql);
 // Check if the statement was prepared successfully
 if ($stmt) {
     // Bind parameters to the placeholders
-    $stmt->bind_param("ii", $userid, $productid); // Replace $userid and $productid with appropriate variables
+    $stmt->bind_param("i", $userid); // Replace $userid and $productid with appropriate variables
     
     // Execute the prepared statement
     $stmt->execute();
@@ -92,11 +93,8 @@ if ($stmt) {
       <?php
       while ($row = $orders->fetch_assoc()) {
             if (!empty($row['userid'])) {
-                if ($row['userid'] == $_SESSION['userid']){
-                    continue;
-                };
                 echo "<tr>";
-                echo "<td align='left'><b>" . $row['oderid'] . "</b></td>";
+                echo "<td align='left'><b>" . $row['orderid'] . "</b></td>";
                 echo "<td align='left'>" . $row['product'] . "</td>";
                 echo "<td align='left'>" . $row['orderDate'] . "</td>";
                 echo "<td align='left'>" . $row['orderStatus'] . "</td>";
