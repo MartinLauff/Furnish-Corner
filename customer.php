@@ -96,7 +96,7 @@ if ($stmt) {
                     continue;
                 };
                 echo "<tr>";
-                echo "<td align='left'><b>" . $row['oederid'] . "</b></td>";
+                echo "<td align='left'><b>" . $row['oderid'] . "</b></td>";
                 echo "<td align='left'>" . $row['product'] . "</td>";
                 echo "<td align='left'>" . $row['orderDate'] . "</td>";
                 echo "<td align='left'>" . $row['orderStatus'] . "</td>";
@@ -139,9 +139,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['orderstate'])) {
         $state = $_POST['orderstate'];
         $order_user_id = $_POST['userid'];
-        $updateSql = "UPDATE Orders SET orderStatus = $state WHERE orderid = ?";
+        $updateSql = "UPDATE Orders SET orderStatus = ? WHERE orderid = ?";
         $updateStmt = $conn->prepare($updateSql);
-        $updateStmt->bind_param("i", $order_user_id);
+        $updateStmt->bind_param("si", $state, $order_id); // Bind $state and $order_id
         if ($updateStmt->execute()) {
             echo "Order updated successfully!";
         } else {
