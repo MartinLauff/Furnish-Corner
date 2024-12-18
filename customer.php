@@ -1,6 +1,37 @@
 <?php
 // Include database connection
 include 'db.php';
+
+if (!isset($_SESSION['username'])) {
+  die("You are not logged in!");
+}
+
+$username = $_SESSION['username'];
+
+
+if (!empty($_POST['user_id'])) {
+  $user_id = $_POST['user_id'];
+};
+
+$sql = "
+          SELECT 
+              o.orderid,
+              us.name,
+              us.userid,
+              pb.name as product,
+              o.quantity,
+              o.orderDate,
+              o.orderStatus
+          FROM 
+              Orders o
+          LEFT JOIN ProductBase pb 
+              ON o.productid = pb.subid
+          LEFT JOIN User u
+              ON o.userid = us.userid
+          WHERE 
+              o.userid = ? AND o.productid = ?
+      ";
+$orders = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,18 +64,40 @@ include 'db.php';
             type="text"
             placeholder="username"
             disabled
-            value="sample username"
+            value="<?php echo htmlspecialchars($username); ?>"
             />
             <label for="pass">Password</label>
-            <input
-            type="password"
-            placeholder="password"
-            disabled
-            value="sample password"
-            />
           </div>
           <input type="submit" value="Edit" />
       </form>
+      <br>
+      <br>
+      <?php
+      while ($row = $orders->fetch_assoc()) {
+            if (!empty($row['userid'])) {
+                if ($row['userid'] == $_SESSION['userid']){
+                    continue;
+                };
+                echo "<tr>";
+                echo "<td align='left'><b>" . $row['oederid'] . "</b></td>";
+                echo "<td align='left'>" . $row['product'] . "</td>";
+                echo "<td align='left'>" . $row['orderDate'] . "</td>";
+                echo "<td align='left'>" . $row['orderStatus'] . "</td>";
+                echo "<td>";
+                echo "<form method='POST' action='customer.php'>";
+                if ($row['orderStatus'] != 'Cancelled') {
+                  echo "<input type='hidden' name='user_id' value='". $row['userid'] ."'/>";
+                  echo "<input type='hidden' name='order_id' value='". $row['orderid'] ."'/>";
+                  echo "<input type='hidden' name='orderstate' value='Cancelled'/>";
+                  echo "<input type='submit' name='cancel' value='Cancell'/>";
+                }
+                echo "</form>";
+                echo "</td>";
+                echo "</tr>";
+            }
+        }
+        ?>
+      </table>
       <div class="links">
         <a href="index.php">Return home</a>
         <a href="logout.php">Log out</a>
@@ -55,3 +108,30 @@ include 'db.php';
     </script>
   </body>
 </html>
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $sql = "SELECT * FROM Orders WHERE orderid = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+    if (!empty($_POST['user_id'])) {
+        $user_id = $_POST['user_id'];
+    }
+    if (!empty($_POST['orderstate'])) {
+        $state = $_POST['orderstate'];
+        $order_user_id = $_POST['userid'];
+        $updateSql = "UPDATE Orders SET orderStatus = $state WHERE orderid = ?";
+        $updateStmt = $conn->prepare($updateSql);
+        $updateStmt->bind_param("i", $order_user_id);
+        if ($updateStmt->execute()) {
+            echo "Order updated successfully!";
+        } else {
+            echo "Error: " . $conn->error;
+        }
+    }
+}
+// Close the database connection
+$conn->close();
+?>

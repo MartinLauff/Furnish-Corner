@@ -47,9 +47,16 @@ $result = $conn->query($sql);
         <li>
           <a href="login.php">Log in</a>
         </li>
-        <?php if (isset($_SESSION['userid'])): ?>
+        <?php if (isset($_SESSION['userid'])):
+          if (isset($_SESSION['role'])){
+            if ($_SESSION['role'] === 'admin'){
+              $profile_link = 'admin.php';
+            } else if ($_SESSION['role'] === 'customer'){
+              $profile_link = 'customer.php';
+            };
+          }; ?>
           <li>
-            <a href="customer.php">Profile</a>
+            <a href=<?php echo htmlspecialchars($profile_link); ?>>Profile</a>
           </li>
         <?php endif; ?>
         <li>
@@ -69,7 +76,7 @@ $result = $conn->query($sql);
         <img src="imgs/curtains.jpg" alt="curtains" />
         <div class="overlay-text">
           <h4>Smart Curtains</h4>
-          <span>Smart Curtains – Where Function Meets Elegance</span>
+          <span>Smart Curtains - Where Function Meets Elegance</span>
         </div>
       </a>
       <a class="grid-item" href="product.php?pid=8">
