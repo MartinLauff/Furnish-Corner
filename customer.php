@@ -16,8 +16,8 @@ if (!empty($_POST['user_id'])) {
 $sql = "
           SELECT 
               o.orderid,
-              us.name,
-              us.userid,
+              u.name,
+              u.userid,
               pb.name as product,
               o.quantity,
               o.orderDate,
@@ -27,11 +27,28 @@ $sql = "
           LEFT JOIN ProductBase pb 
               ON o.productid = pb.subid
           LEFT JOIN User u
-              ON o.userid = us.userid
+              ON o.userid = u.userid
           WHERE 
               o.userid = ? AND o.productid = ?
       ";
-$orders = $conn->query($sql);
+
+// Prepare the statement
+$stmt = $conn->prepare($sql);
+
+// Check if the statement was prepared successfully
+if ($stmt) {
+    // Bind parameters to the placeholders
+    $stmt->bind_param("ii", $userid, $productid); // Replace $userid and $productid with appropriate variables
+    
+    // Execute the prepared statement
+    $stmt->execute();
+    
+    // Get the result set
+    $orders = $stmt->get_result();
+} else {
+    // Handle errors in preparing the statement
+    echo "Error preparing statement: " . $conn->error;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -10,6 +10,4 @@ CREATE TABLE Orders (
     FOREIGN KEY (productid) REFERENCES Product(pid) ON DELETE CASCADE
 );
 INSERT INTO Orders (userid, productid, quantity, orderStatus)
-VALUES (1, 2, 3, 'Pending'),
-VALUES (1, 1, 1, 'Processing');
-
+VALUES (1, 2, 3, 'Pending'), (1, 1, 1, 'Processing');
