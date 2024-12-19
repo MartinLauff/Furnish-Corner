@@ -2,11 +2,8 @@
 // Include database connection
 include 'db.php';
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 $errorElement = '<div class="link-error" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);display: flex;align-items: center;flex-direction: column;"><h2 style="margin-left: 0">Invalid URL</h2><a href=/myWebShop>Go Back</a></div>';
-
+$msg = '';
 
 if (!isset($_SESSION['username'])) {
     die("You are not logged in!");
@@ -28,29 +25,11 @@ $sql = "
               User u
       ";
 $users = $conn->query($sql);
-
-$sql_ord = "
-          SELECT 
-              o.orderid,
-              us.name,
-              us.userid,
-              pb.name as product,
-              o.quantity,
-              o.orderDate,
-              o.orderStatus
-          FROM 
-              Orders o
-          LEFT JOIN ProductBase pb 
-              ON o.productid = pb.subid
-          LEFT JOIN User u
-              ON o.userid = us.userid
-          WHERE 
-              o.userid = ? AND o.productid = ?
-      ";
-$orders = $conn->query($sql_ord);
-
-
-
+// Fetch message from session
+if (isset($_SESSION['msg'])) {
+  $msg = $_SESSION['msg'];
+  unset($_SESSION['msg']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +41,10 @@ $orders = $conn->query($sql_ord);
     <title>
     Admin
     </title>
+    <script>
+      const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+      const isCartFull = <?php echo json_encode($isCartFull); ?>;
+    </script>
   </head>
   <body>
     <div class="top-bar">
@@ -74,11 +57,11 @@ $orders = $conn->query($sql_ord);
     </div>
     <div class="wrapper">
       <div>
-        <p>
+        <h3>
           Wellcome to the admin console<br />
           <br />
           Manage Users: <br />
-        </p>
+        </h3>
       </div>
       <table>
         <tr>
@@ -115,42 +98,11 @@ $orders = $conn->query($sql_ord);
       </table>
       <br>
       <br>
-      <table>
-        <tr>
-          <th align="left">User</th>
-          <th align="left">Product</th>
-          <th align="left">Amount</th>
-          <th align="left">Time</th>
-          <th align="left">Time</th>
-          <th></th>
-        </tr>
-        <?php
-        while ($row = $orders->fetch_assoc()) {
-            if (!empty($row['orderid'])) {
-                echo "<tr>";
-                echo "<td align='left'><b>" . $row['name'] . "</b></td>";
-                echo "<td align='left'>" . $row['product'] . "</td>";
-                echo "<td align='left'>" . $row['quantity'] . "</td>";
-                echo "<td align='left'>" . $row['orderDate'] . "</td>";
-                echo "<td>";
-                echo "<form method='POST' action='admin.php'>";
-                echo "<input type='hidden' name='order_id' value='". $row['orderid'] ."'/>";
-                echo "<select id='dropdown' name='options'>";
-                echo "<option name'orderstate' value='Pending'>Pending</option>";
-                echo "<option name'orderstate' value='Processing'>Processing</option>";
-                echo "<option name'orderstate' value='Cancelled'>Cancelled</option>";
-                echo "</select>";
-                echo "<input type='submit' name='block' value='". $blockstate ."'/>";
-                echo "</form>";
-                echo "</td>";
-                echo "</tr>";
-            }
-        }
-        ?>
-      </table>
       <hr />
-      <a href="/myWebShop">Go Back</a>
-      <a href="logout.php">Log out</a>
+      <div class="links">
+        <a href="/myWebShop">Go Back</a>
+        <a href="logout.php">Log out</a>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>
@@ -175,16 +127,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $updateStmt = $conn->prepare($updateSql);
             $updateStmt->bind_param("i", $user_id);
             if ($updateStmt->execute()) {
-                echo "User updated successfully!";
-            } else {
+                echo "<h2 style='color: green;text-align: center;'>User blocked successfully!</h2>";
+              } else {
                 echo "Error: " . $conn->error;
-            }
-        } else if ($block_user === 'Unblock'){
-            $updateSql = "UPDATE User SET isBlocked = FALSE WHERE userid = ?";
-            $updateStmt = $conn->prepare($updateSql);
-            $updateStmt->bind_param("i", $user_id);
-            if ($updateStmt->execute()) {
-                echo "User updated successfully!";
+              }
+            } else if ($block_user === 'Unblock'){
+              $updateSql = "UPDATE User SET isBlocked = FALSE WHERE userid = ?";
+              $updateStmt = $conn->prepare($updateSql);
+              $updateStmt->bind_param("i", $user_id);
+              if ($updateStmt->execute()) {
+                echo "<h2 style='color: green;text-align: center;'>User unblocked successfully!</h2>";
             } else {
                 echo "Error: " . $conn->error;
             }
@@ -197,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $updateStmt = $conn->prepare($updateSql);
           $updateStmt->bind_param("i", $order_user_id);
           if ($updateStmt->execute()) {
-              echo "Order updated successfully!";
+              echo "<h2 style='color: green;text-align: center;'>Order updated successfully!</h2>";
           } else {
                   echo "Error: " . $conn->error;
           }
