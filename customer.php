@@ -2,55 +2,46 @@
 // Include database connection
 include 'db.php';
 
-if (!isset($_SESSION['username'])) {
-  die("You are not logged in!");
+$userid = $_SESSION['userid'];
+$successMessage = '';
+$errorMessage = '';
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['name']);
+    $password = trim($_POST['pass']);
+
+    if (!empty($name) && !empty($password)) {
+        // Update user data in the database
+        $updateSql = "UPDATE User SET name = ?, password = ? WHERE userid = ?";
+        $stmt = $conn->prepare($updateSql);
+        $stmt->bind_param("ssi", $name, $password, $userid);
+
+        if ($stmt->execute()) {
+            $successMessage = "Your profile has been updated successfully.";
+            $_SESSION['username'] = $name; // Update session username
+        } else {
+            $errorMessage = "Error updating profile: " . $conn->error;
+        }
+    } else {
+        $errorMessage = "Both fields are required.";
+    }
 }
 
-$username = $_SESSION['username'];
-$userid = $_SESSION['userid'];
+// Fetch the current user data
+$userSql = "SELECT name FROM User WHERE userid = ?";
+$stmt = $conn->prepare($userSql);
+$stmt->bind_param("i", $userid);
+$stmt->execute();
+$result = $stmt->get_result();
 
-
-if (!empty($_POST['user_id'])) {
-  $user_id = $_POST['user_id'];
-};
-
-$sql = "
-          SELECT 
-              o.orderid,
-              u.name,
-              u.userid,
-              pb.name as product,
-              o.quantity,
-              o.orderDate,
-              o.orderStatus
-          FROM 
-              Orders o
-          LEFT JOIN ProductBase pb 
-              ON o.productid = pb.subid
-          LEFT JOIN User u
-              ON o.userid = u.userid
-          WHERE 
-              o.userid = ?
-      ";
-
-// Prepare the statement
-$stmt = $conn->prepare($sql);
-
-// Check if the statement was prepared successfully
-if ($stmt) {
-    // Bind parameters to the placeholders
-    $stmt->bind_param("i", $userid); // Replace $userid and $productid with appropriate variables
-    
-    // Execute the prepared statement
-    $stmt->execute();
-    
-    // Get the result set
-    $orders = $stmt->get_result();
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
 } else {
-    // Handle errors in preparing the statement
-    echo "Error preparing statement: " . $conn->error;
+    die("User not found.");
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -59,14 +50,10 @@ if ($stmt) {
     <title>Customer</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="mystyle.css" />
-    <script>
-      const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
-      const isCartFull = <?php echo json_encode($isCartFull); ?>;
-    </script>
   </head>
   <body>
     <div class="top-bar">
-      <h1>Profile information</h1>
+      <h1>Profile Information</h1>
       <div class="navCorner">
         <div class="theme-setting">
           <input id="theme-checkbox" onchange="setTheme(event)" type="checkbox" />
@@ -74,79 +61,41 @@ if ($stmt) {
       </div>
     </div>
     <div class="wrapper">
-      <form id="editForm" method="PUT" action="customer.php">
+      <h2>Edit Your Profile</h2>
+      <?php if ($successMessage): ?>
+        <h3 style="color: green;" class="success-message"><?php echo $successMessage; ?></h3>
+      <?php elseif ($errorMessage): ?>
+        <h3 style="color: red;" class="error-message"><?php echo $errorMessage; ?></h3>
+      <?php endif; ?>
+
+      <form id="editForm" method="POST" action="customer.php">
         <div class="formGrid">
           <label for="name">Username</label>
           <input
             id="name"
             type="text"
             placeholder="username"
-            disabled
-            value="<?php echo htmlspecialchars($username); ?>"
-            />
-            <label for="pass">Password</label>
-          </div>
-          <input type="submit" value="Edit" />
+            name="name"
+            value="<?php echo $user['name']; ?>"
+          />
+          <label for="pass">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="password"
+            name="pass"
+          />
+        </div>
+        <input type="submit" value="Edit" />
       </form>
       <br>
       <br>
-      <?php
-      while ($row = $orders->fetch_assoc()) {
-            if (!empty($row['userid'])) {
-                echo "<tr>";
-                echo "<td align='left'><b>" . $row['orderid'] . "</b></td>";
-                echo "<td align='left'>" . $row['product'] . "</td>";
-                echo "<td align='left'>" . $row['orderDate'] . "</td>";
-                echo "<td align='left'>" . $row['orderStatus'] . "</td>";
-                echo "<td>";
-                echo "<form method='POST' action='customer.php'>";
-                if ($row['orderStatus'] != 'Cancelled') {
-                  echo "<input type='hidden' name='user_id' value='". $row['userid'] ."'/>";
-                  echo "<input type='hidden' name='order_id' value='". $row['orderid'] ."'/>";
-                  echo "<input type='hidden' name='orderstate' value='Cancelled'/>";
-                  echo "<input type='submit' name='cancel' value='Cancell'/>";
-                }
-                echo "</form>";
-                echo "</td>";
-                echo "</tr>";
-            }
-        }
-        ?>
-      </table>
       <div class="links">
         <a href="index.php">Return home</a>
         <a href="logout.php">Log out</a>
         <a href="shoppingCart.php">Shopping cart</a>
       </div>
     </div>
-    <script src="script.js">
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
-<?php
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sql = "SELECT * FROM Orders WHERE orderid = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-    if (!empty($_POST['user_id'])) {
-        $user_id = $_POST['user_id'];
-    }
-    if (!empty($_POST['orderstate'])) {
-        $state = $_POST['orderstate'];
-        $order_user_id = $_POST['userid'];
-        $updateSql = "UPDATE Orders SET orderStatus = ? WHERE orderid = ?";
-        $updateStmt = $conn->prepare($updateSql);
-        $updateStmt->bind_param("si", $state, $order_id); // Bind $state and $order_id
-        if ($updateStmt->execute()) {
-            echo "Order updated successfully!";
-        } else {
-            echo "Error: " . $conn->error;
-        }
-    }
-}
-// Close the database connection
-$conn->close();
-?>

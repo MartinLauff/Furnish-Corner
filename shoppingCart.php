@@ -78,9 +78,11 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
         </table>
     <?php endif; ?>
     <a style="margin-top: 2rem;display: inline-block;" href="customer.php">Back to profile</a>
-    <form id="orderForm" method="POST" action="placeOrder.php">
-      <input type="submit" value="Order" />
-    </form>
+    <?php if (!empty($cart)): ?>
+      <form id="orderForm" method="POST" action="placeOrder.php">
+        <input type="submit" value="Order" />
+      </form>
+    <?php endif; ?>
   </div>
     <script src="script.js">
     </script>

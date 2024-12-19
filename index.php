@@ -44,9 +44,11 @@ $result = $conn->query($sql);
             echo "<li>No categories found</li>";
         }
         ?>
-        <li>
-          <a href="login.php">Log in</a>
-        </li>
+        <?php if (!isset($_SESSION['userid'])): ?>
+          <li>
+            <a href="login.php">Log in</a>
+          </li>
+        <?php endif; ?>  
         <?php if (isset($_SESSION['userid'])):
           if (isset($_SESSION['role'])){
             if ($_SESSION['role'] === 'admin'){
@@ -56,7 +58,10 @@ $result = $conn->query($sql);
             };
           }; ?>
           <li>
-            <a href=<?php echo htmlspecialchars($profile_link); ?>>Profile</a>
+            <a href=<?php echo $profile_link; ?>>Profile</a>
+          </li>
+          <li>
+            <a href="orders.php">Orders</a>
           </li>
         <?php endif; ?>
         <li>
