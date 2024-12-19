@@ -42,13 +42,19 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
             </tr>
             <?php 
             $grandTotal = 0;
+            $amount = 0;
             foreach ($cart as $pid => $item):
-                $total = $item['price'] * $item['quantity'];
+                $amount += $item['quantity'];
+                $price = $item['price'];
+                if ($amount%10 == 0) {
+                  $price = (int)$item['price']*0.9; 
+                }
+                $total = $price * $item['quantity'];
                 $grandTotal += $total;
             ?>
                 <tr data-pid="<?php echo $pid; ?>">
                     <td id="<?php echo $item['pid']; ?>-name"><?php echo $item['name']; ?></td>
-                    <td id="<?php echo $item['pid']; ?>-price" align="center"><?php echo $item['price']; ?>€</td>
+                    <td id="<?php echo $item['pid']; ?>-price" align="center"><?php echo $price; ?>€</td>
                     <td id="<?php echo $item['pid']; ?>-quantity" align="center"><?php echo $item['quantity']; ?></td>
                     <td align="center">
                       <button onclick="updateQuantity('add', <?php echo $item['pid']; ?>)">+</button>

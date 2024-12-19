@@ -3,7 +3,6 @@
 include 'db.php';
 
 $errorElement = '<div class="link-error" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);display: flex;align-items: center;flex-direction: column;"><h2 style="margin-left: 0">Invalid URL</h2><a href=/myWebShop>Go Back</a></div>';
-$msg = '';
 
 if (!isset($_SESSION['username'])) {
     die("You are not logged in!");
@@ -25,11 +24,6 @@ $sql = "
               User u
       ";
 $users = $conn->query($sql);
-// Fetch message from session
-if (isset($_SESSION['msg'])) {
-  $msg = $_SESSION['msg'];
-  unset($_SESSION['msg']);
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
